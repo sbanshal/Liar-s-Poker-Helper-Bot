@@ -14,7 +14,6 @@ from constants import HAND_RANKS
 
 # Constants
 DEFAULT_MC_SAMPLES = 1_000
-MAX_RUNTIME_SECONDS = 300
 CONFIDENCE_EPSILON = 0.01
 
 # ---- Core Simulator ----
@@ -54,11 +53,6 @@ def simulate_presence_probability(
             hit_count += 1
 
     for _ in tqdm(range(max_samples), desc="Presence Monte Carlo"):
-        elapsed = time.time() - start_time
-        if elapsed > MAX_RUNTIME_SECONDS:
-            print(f"[Presence Mode] Time limit reached after {elapsed:.1f}s")
-            break
-
         draw = random.sample(remaining_deck, cards_to_draw)
         pool = known_cards + draw
 

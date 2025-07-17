@@ -59,23 +59,38 @@ def evaluate_hand(cards: List[Card]) -> Tuple[str, List[int]]:
     return evaluate_hand_cached(values_tuple, suits_tuple)
 
 def describe_hand(hand_type: str, values: List[int], suits: List[str] = None) -> str:
-    if hand_type in ["One Pair", "Three of a Kind", "Four of a Kind"]:
-        return f"{hand_type}, {VALUE_TO_RANK_NAME[values[0]]}s"
+    def plural(rank: str):
+        return rank + "s"
+
+    VALUE_TO_RANK_NAME = {
+        2: "2", 3: "3", 4: "4", 5: "5", 6: "6",
+        7: "7", 8: "8", 9: "9", 10: "10",
+        11: "J", 12: "Q", 13: "K", 14: "A"
+    }
+
+    rank0 = VALUE_TO_RANK_NAME[values[0]]
+    rank1 = VALUE_TO_RANK_NAME[values[1]] if len(values) > 1 else None
+    low = VALUE_TO_RANK_NAME[values[-1]]
+
+    if hand_type == "High Card":
+        return f"{hand_type}, High {rank0}"
+    elif hand_type == "One Pair":
+        return f"{hand_type}, {plural(rank0)}"
     elif hand_type == "Two Pair":
-        return f"{hand_type}, {VALUE_TO_RANK_NAME[values[0]]}s and {VALUE_TO_RANK_NAME[values[1]]}s"
-    elif hand_type == "Full House":
-        return f"{hand_type}, {VALUE_TO_RANK_NAME[values[0]]}s over {VALUE_TO_RANK_NAME[values[1]]}s"
+        return f"{hand_type}, {plural(rank0)} and {plural(rank1)}"
+    elif hand_type == "Three of a Kind":
+        return f"{hand_type}, {plural(rank0)}"
     elif hand_type == "Straight":
-        return f"{hand_type}, {VALUE_TO_RANK_NAME[values[-1]]} to {VALUE_TO_RANK_NAME[values[0]]}"
+        return f"{hand_type}, {low} to {rank0}"
     elif hand_type == "Flush":
-        if suits:
-            return f"{hand_type}, {suits[0]}, high {VALUE_TO_RANK_NAME[values[0]]}"
-        else:
-            return f"{hand_type}, high {VALUE_TO_RANK_NAME[values[0]]}"
+        return f"{hand_type}, {suits[0]}, High {rank0}" if suits else f"{hand_type}, high {rank0}"
+    elif hand_type == "Full House":
+        return f"{hand_type}, {plural(rank0)} over {plural(rank1)}"
+    elif hand_type == "Four of a Kind":
+        return f"{hand_type}, {plural(rank0)}"
     elif hand_type == "Straight Flush":
-        if suits:
-            return f"{hand_type}, {suits[0]}, {VALUE_TO_RANK_NAME[values[-1]]} to {VALUE_TO_RANK_NAME[values[0]]}"
-        else:
-            return f"{hand_type}, {VALUE_TO_RANK_NAME[values[-1]]} to {VALUE_TO_RANK_NAME[values[0]]}"
+        return f"{hand_type}, {suits[0]}, {low} to {rank0}" if suits else f"{hand_type}, {low} to {rank0}"
+    elif hand_type == "Royal Flush":
+        return "Royal Flush"
     else:
-        return f"{hand_type}, high {VALUE_TO_RANK_NAME[values[0]]}"
+        return f"{hand_type}, high {rank0}"

@@ -11,6 +11,29 @@ import matplotlib as mpl
 
 mpl.rcParams['font.family'] = ['EB Garamond', 'serif']
 
+st.markdown(
+    """
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap');
+
+        html, body, [class*="st-"], .css-18e3th9, .css-1d391kg, .block-container {
+            font-family: 'EB Garamond', serif !important;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'EB Garamond', serif !important;
+            font-weight: 600;
+        }
+
+        .stSelectbox label, .stSlider label, .stNumberInput label {
+            font-weight: 500;
+            font-size: 14px;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 st.set_page_config(page_title="Liar's Poker Bid Helper", layout="wide")
 
 # Constants
@@ -117,20 +140,17 @@ def render_game_settings():
     with col1:
         total_cards = st.number_input("Total cards in play:", min_value=5, max_value=52, value=20)
     with col2:
-        thresh = st.slider("Probability threshold", 0.0, 1.0, 0.50, 0.01)
+        thresh = st.slider("Probability Threshold", 0.0, 1.0, 0.50, 0.01)
 
-    sample_override = st.number_input(
-        "Sample Count", min_value=1_000, max_value=10_000, step=100, value=1_000
-    )
+    sample_override = 1000
 
-    est_sec = sample_override / 100  # Example: 5000 → 50s
+    est_sec = sample_override * 0.33
     est_min = est_sec / 60
 
     if est_min < 1:
-        st.caption(f"Estimated runtime: ~{int(est_sec)} seconds")
+        st.caption(f"Estimated Runtime: ~{int(est_sec)} seconds")
     else:
-        st.caption(f"Estimated runtime: ~{round(est_min, 1)} minutes")
-        st.caption(f"Estimated runtime: ~{est_min} min")
+        st.caption(f"Estimated Runtime: ~{round(est_min, 1)} minutes")
 
     return total_cards, thresh, sample_override
 
@@ -141,13 +161,14 @@ st.caption("Use this tool to decide whether to challenge or raise the last bid i
 with st.expander("Game Instructions (click to expand)", expanded=False):
     st.markdown("""
     - A bid is a claim that *at least one* valid 5-card poker hand of that strength exists in the pool.
-    - On your turn: Raise with a stronger hand or Call BS.
+    - On your turn: Raise with a stronger hand or call BS.
     - The simulation tells you if stronger hands are likely enough to justify raising.
     """)
 
 bid_str = render_bid_section()
 your_cards = render_card_input_section()
-total_cards, thresh, sample_override = render_game_settings()
+total_cards, thresh, _ = render_game_settings()
+sample_override = 1000
 
 st.divider()
 
@@ -190,36 +211,15 @@ if st.button("Simulate and Decide"):
                     prob = count / total
                     st.write(f"- {hand} — {prob * 100:.1f}%")
 
-                filtered_json = json.dumps(
-                    {hand: round(count / total, 4) for hand, count in filtered_matches.items()},
-                    indent=2
-                )
-                st.download_button(
-                    "Download Filtered Results (JSON)",
-                    data=filtered_json,
-                    file_name="filtered_matching_hands.json",
-                    mime="application/json"
-                )
+                import os
+                os.makedirs("data", exist_ok=True)
+
+                with open("data/full_output.json", "w") as f:
+                    json.dump(output, f, indent=2)
+
+                st.success("Filtered results saved to: `data/simulation_result.json`")
 
         st.caption(f"Simulation completed in {elapsed:.2f} seconds")
-
-        if dist:
-            st.markdown("### Hand Type Frequency:")
-            fig, ax = plt.subplots(figsize=(10, 4))
-            ordered_labels = sorted(dist.items(), key=lambda x: HAND_RANKS.get(x[0], 0))
-            labels = [label for label, _ in ordered_labels]
-            values = [count for _, count in ordered_labels]
-            colors = plt.cm.magma([i / len(labels) for i in range(len(labels))])
-
-            ax.bar(labels, values, color=colors, width=0.5, edgecolor='black')
-            ax.set_ylabel("Count", fontsize=12, labelpad=8)
-            ax.set_xlabel("Hand Type", fontsize=12, labelpad=8)
-            ax.set_title("Hand Type Distribution", fontsize=16, fontweight='bold', pad=12)
-            ax.set_xticklabels(labels, rotation=25, ha='right', fontsize=10)
-            ax.spines['top'].set_visible(False)
-            ax.spines['right'].set_visible(False)
-            ax.grid(axis='y', linestyle='--', alpha=0.3)
-            st.pyplot(fig)
 
     except Exception as e:
         st.error(f"Error during simulation: {e}")
