@@ -1,0 +1,7 @@
+{
+  "n": 20,
+  "x": 3,
+  "cards": ["K of Hearts", "3 of Spades", "6 of Hearts"],
+  "last_bid": "Pair of Tens",
+  "threshold": 0.1
+}

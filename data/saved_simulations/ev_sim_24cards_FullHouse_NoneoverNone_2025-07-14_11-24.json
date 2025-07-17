@@ -1,0 +1,17 @@
+{
+  "params": {
+    "n": 24,
+    "x": 3,
+    "cards": [
+      "9 of Diamonds",
+      "9 of Hearts",
+      "9 of Clubs"
+    ],
+    "last_bid": "Full House, None over None",
+    "threshold": 0.05,
+    "simulations": 500,
+    "sampling": true,
+    "hands_per_sim": 20
+  },
+  "results": []
+}

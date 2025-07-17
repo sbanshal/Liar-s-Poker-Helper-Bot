@@ -1,0 +1,832 @@
+{
+  "params": {
+    "n": 20,
+    "x": 3,
+    "cards": [
+      "K of Hearts",
+      "3 of Spades",
+      "6 of Hearts"
+    ],
+    "last_bid": "One Pair, of None",
+    "threshold": 0.05,
+    "simulations": 1000
+  },
+  "results": [
+    {
+      "hand": "Flush, Hearts, high Kings",
+      "probability": 0.761
+    },
+    {
+      "hand": "Straight, 2 to 6",
+      "probability": 0.543
+    },
+    {
+      "hand": "Two Pair, 6s and 3s",
+      "probability": 0.533
+    },
+    {
+      "hand": "Straight, 3 to 7",
+      "probability": 0.528
+    },
+    {
+      "hand": "Two Pair, Kingss and 6s",
+      "probability": 0.511
+    },
+    {
+      "hand": "Two Pair, Kingss and 3s",
+      "probability": 0.502
+    },
+    {
+      "hand": "Straight, 6 to 10",
+      "probability": 0.458
+    },
+    {
+      "hand": "Straight, 10 to Aces",
+      "probability": 0.452
+    },
+    {
+      "hand": "Straight, 9 to Kings",
+      "probability": 0.451
+    },
+    {
+      "hand": "Straight, Aces to 5",
+      "probability": 0.442
+    },
+    {
+      "hand": "Straight, 5 to 9",
+      "probability": 0.44
+    },
+    {
+      "hand": "Straight, 4 to 8",
+      "probability": 0.425
+    },
+    {
+      "hand": "Straight, 8 to Queens",
+      "probability": 0.372
+    },
+    {
+      "hand": "Straight, 7 to Jacks",
+      "probability": 0.361
+    },
+    {
+      "hand": "Two Pair, 10s and 6s",
+      "probability": 0.341
+    },
+    {
+      "hand": "Two Pair, Jackss and 6s",
+      "probability": 0.335
+    },
+    {
+      "hand": "Two Pair, 10s and 3s",
+      "probability": 0.333
+    },
+    {
+      "hand": "Two Pair, 6s and 2s",
+      "probability": 0.325
+    },
+    {
+      "hand": "Two Pair, Jackss and 3s",
+      "probability": 0.322
+    },
+    {
+      "hand": "Flush, Hearts, high Aces",
+      "probability": 0.317
+    },
+    {
+      "hand": "Two Pair, Queenss and 6s",
+      "probability": 0.313
+    },
+    {
+      "hand": "Two Pair, 3s and 2s",
+      "probability": 0.312
+    },
+    {
+      "hand": "Two Pair, Kingss and 10s",
+      "probability": 0.309
+    },
+    {
+      "hand": "Two Pair, Kingss and Jackss",
+      "probability": 0.309
+    },
+    {
+      "hand": "Two Pair, Queenss and 3s",
+      "probability": 0.308
+    },
+    {
+      "hand": "Two Pair, 8s and 6s",
+      "probability": 0.306
+    },
+    {
+      "hand": "Two Pair, Kingss and 2s",
+      "probability": 0.305
+    },
+    {
+      "hand": "Two Pair, 4s and 3s",
+      "probability": 0.301
+    },
+    {
+      "hand": "Two Pair, 6s and 5s",
+      "probability": 0.3
+    },
+    {
+      "hand": "Two Pair, 6s and 4s",
+      "probability": 0.3
+    },
+    {
+      "hand": "Two Pair, 9s and 6s",
+      "probability": 0.298
+    },
+    {
+      "hand": "Two Pair, 5s and 3s",
+      "probability": 0.294
+    },
+    {
+      "hand": "Two Pair, 8s and 3s",
+      "probability": 0.294
+    },
+    {
+      "hand": "Two Pair, 9s and 3s",
+      "probability": 0.294
+    },
+    {
+      "hand": "Two Pair, 7s and 3s",
+      "probability": 0.289
+    },
+    {
+      "hand": "Two Pair, Kingss and 9s",
+      "probability": 0.286
+    },
+    {
+      "hand": "Two Pair, Kingss and Queenss",
+      "probability": 0.285
+    },
+    {
+      "hand": "Two Pair, Acess and 6s",
+      "probability": 0.284
+    },
+    {
+      "hand": "Two Pair, 7s and 6s",
+      "probability": 0.283
+    },
+    {
+      "hand": "Two Pair, Acess and 3s",
+      "probability": 0.28
+    },
+    {
+      "hand": "Three of a Kind, 3s",
+      "probability": 0.28
+    },
+    {
+      "hand": "Two Pair, Kingss and 8s",
+      "probability": 0.28
+    },
+    {
+      "hand": "Three of a Kind, 6s",
+      "probability": 0.277
+    },
+    {
+      "hand": "Two Pair, Acess and Kingss",
+      "probability": 0.276
+    },
+    {
+      "hand": "Two Pair, Kingss and 5s",
+      "probability": 0.275
+    },
+    {
+      "hand": "Two Pair, Kingss and 7s",
+      "probability": 0.274
+    },
+    {
+      "hand": "Two Pair, Kingss and 4s",
+      "probability": 0.269
+    },
+    {
+      "hand": "Three of a Kind, Kingss",
+      "probability": 0.261
+    },
+    {
+      "hand": "Flush, Spades, high Aces",
+      "probability": 0.252
+    },
+    {
+      "hand": "Flush, Diamonds, high Aces",
+      "probability": 0.236
+    },
+    {
+      "hand": "Flush, Spades, high Kings",
+      "probability": 0.233
+    },
+    {
+      "hand": "Flush, Hearts, high Queens",
+      "probability": 0.232
+    },
+    {
+      "hand": "Two Pair, 10s and 2s",
+      "probability": 0.212
+    },
+    {
+      "hand": "Flush, Clubs, high Aces",
+      "probability": 0.204
+    },
+    {
+      "hand": "Full House, 3s over 6s",
+      "probability": 0.201
+    },
+    {
+      "hand": "Two Pair, Jackss and 2s",
+      "probability": 0.199
+    },
+    {
+      "hand": "Flush, Spades, high Queens",
+      "probability": 0.198
+    },
+    {
+      "hand": "Two Pair, 10s and 4s",
+      "probability": 0.197
+    },
+    {
+      "hand": "Full House, 6s over 3s",
+      "probability": 0.194
+    },
+    {
+      "hand": "Flush, Spades, high Jacks",
+      "probability": 0.193
+    },
+    {
+      "hand": "Full House, Kingss over 6s",
+      "probability": 0.192
+    },
+    {
+      "hand": "Two Pair, Queenss and 10s",
+      "probability": 0.191
+    },
+    {
+      "hand": "Full House, 6s over Kingss",
+      "probability": 0.19
+    },
+    {
+      "hand": "Two Pair, Jackss and 4s",
+      "probability": 0.189
+    },
+    {
+      "hand": "Two Pair, Queenss and Jackss",
+      "probability": 0.188
+    },
+    {
+      "hand": "Full House, 3s over Kingss",
+      "probability": 0.186
+    },
+    {
+      "hand": "Full House, Kingss over 3s",
+      "probability": 0.186
+    },
+    {
+      "hand": "Two Pair, 4s and 2s",
+      "probability": 0.185
+    },
+    {
+      "hand": "Two Pair, Jackss and 5s",
+      "probability": 0.185
+    },
+    {
+      "hand": "Flush, Diamonds, high Kings",
+      "probability": 0.184
+    },
+    {
+      "hand": "Two Pair, Jackss and 9s",
+      "probability": 0.182
+    },
+    {
+      "hand": "Two Pair, Queenss and 5s",
+      "probability": 0.182
+    },
+    {
+      "hand": "Two Pair, Acess and 2s",
+      "probability": 0.181
+    },
+    {
+      "hand": "Flush, Clubs, high Kings",
+      "probability": 0.181
+    },
+    {
+      "hand": "Two Pair, Jackss and 10s",
+      "probability": 0.18
+    },
+    {
+      "hand": "Two Pair, Acess and Jackss",
+      "probability": 0.179
+    },
+    {
+      "hand": "Two Pair, Queenss and 2s",
+      "probability": 0.179
+    },
+    {
+      "hand": "Two Pair, 7s and 2s",
+      "probability": 0.178
+    },
+    {
+      "hand": "Two Pair, Queenss and 9s",
+      "probability": 0.176
+    },
+    {
+      "hand": "Two Pair, 5s and 2s",
+      "probability": 0.174
+    },
+    {
+      "hand": "Two Pair, 8s and 2s",
+      "probability": 0.174
+    },
+    {
+      "hand": "Two Pair, 10s and 9s",
+      "probability": 0.173
+    },
+    {
+      "hand": "Two Pair, 10s and 7s",
+      "probability": 0.173
+    },
+    {
+      "hand": "Two Pair, 9s and 8s",
+      "probability": 0.173
+    },
+    {
+      "hand": "Two Pair, 8s and 5s",
+      "probability": 0.173
+    },
+    {
+      "hand": "Two Pair, Acess and 4s",
+      "probability": 0.173
+    },
+    {
+      "hand": "Two Pair, Jackss and 8s",
+      "probability": 0.172
+    },
+    {
+      "hand": "Flush, Diamonds, high Queens",
+      "probability": 0.171
+    },
+    {
+      "hand": "Two Pair, 5s and 4s",
+      "probability": 0.171
+    },
+    {
+      "hand": "Two Pair, Queenss and 4s",
+      "probability": 0.17
+    },
+    {
+      "hand": "Two Pair, Acess and Queenss",
+      "probability": 0.168
+    },
+    {
+      "hand": "Two Pair, 10s and 5s",
+      "probability": 0.168
+    },
+    {
+      "hand": "Two Pair, 7s and 5s",
+      "probability": 0.166
+    },
+    {
+      "hand": "Flush, Hearts, high Jacks",
+      "probability": 0.166
+    },
+    {
+      "hand": "Two Pair, Acess and 10s",
+      "probability": 0.165
+    },
+    {
+      "hand": "Two Pair, 9s and 4s",
+      "probability": 0.165
+    },
+    {
+      "hand": "Two Pair, 10s and 8s",
+      "probability": 0.165
+    },
+    {
+      "hand": "Two Pair, Jackss and 7s",
+      "probability": 0.162
+    },
+    {
+      "hand": "Two Pair, 9s and 2s",
+      "probability": 0.16
+    },
+    {
+      "hand": "Two Pair, Acess and 5s",
+      "probability": 0.16
+    },
+    {
+      "hand": "Two Pair, Acess and 7s",
+      "probability": 0.16
+    },
+    {
+      "hand": "Two Pair, Acess and 8s",
+      "probability": 0.16
+    },
+    {
+      "hand": "Two Pair, 9s and 5s",
+      "probability": 0.16
+    },
+    {
+      "hand": "Two Pair, Queenss and 8s",
+      "probability": 0.16
+    },
+    {
+      "hand": "Two Pair, Queenss and 7s",
+      "probability": 0.159
+    },
+    {
+      "hand": "Flush, Hearts, high 10",
+      "probability": 0.159
+    },
+    {
+      "hand": "Two Pair, 8s and 4s",
+      "probability": 0.155
+    },
+    {
+      "hand": "Two Pair, Acess and 9s",
+      "probability": 0.153
+    },
+    {
+      "hand": "Two Pair, 7s and 4s",
+      "probability": 0.153
+    },
+    {
+      "hand": "Two Pair, 9s and 7s",
+      "probability": 0.152
+    },
+    {
+      "hand": "Flush, Clubs, high Queens",
+      "probability": 0.152
+    },
+    {
+      "hand": "Two Pair, 8s and 7s",
+      "probability": 0.151
+    },
+    {
+      "hand": "Flush, Spades, high 10",
+      "probability": 0.146
+    },
+    {
+      "hand": "Three of a Kind, 10s",
+      "probability": 0.138
+    },
+    {
+      "hand": "Full House, 3s over 10s",
+      "probability": 0.134
+    },
+    {
+      "hand": "Flush, Diamonds, high Jacks",
+      "probability": 0.131
+    },
+    {
+      "hand": "Full House, 6s over 2s",
+      "probability": 0.128
+    },
+    {
+      "hand": "Three of a Kind, 9s",
+      "probability": 0.123
+    },
+    {
+      "hand": "Full House, 6s over 10s",
+      "probability": 0.122
+    },
+    {
+      "hand": "Three of a Kind, Queenss",
+      "probability": 0.121
+    },
+    {
+      "hand": "Full House, 3s over Queenss",
+      "probability": 0.121
+    },
+    {
+      "hand": "Three of a Kind, Jackss",
+      "probability": 0.12
+    },
+    {
+      "hand": "Three of a Kind, 2s",
+      "probability": 0.119
+    },
+    {
+      "hand": "Three of a Kind, Acess",
+      "probability": 0.119
+    },
+    {
+      "hand": "Flush, Clubs, high Jacks",
+      "probability": 0.119
+    },
+    {
+      "hand": "Full House, 6s over Jackss",
+      "probability": 0.114
+    },
+    {
+      "hand": "Full House, 6s over 7s",
+      "probability": 0.114
+    },
+    {
+      "hand": "Full House, 3s over 2s",
+      "probability": 0.113
+    },
+    {
+      "hand": "Full House, 6s over 4s",
+      "probability": 0.113
+    },
+    {
+      "hand": "Three of a Kind, 5s",
+      "probability": 0.112
+    },
+    {
+      "hand": "Full House, 3s over 7s",
+      "probability": 0.109
+    },
+    {
+      "hand": "Three of a Kind, 8s",
+      "probability": 0.109
+    },
+    {
+      "hand": "Full House, Kingss over Jackss",
+      "probability": 0.109
+    },
+    {
+      "hand": "Full House, Kingss over 5s",
+      "probability": 0.108
+    },
+    {
+      "hand": "Full House, 3s over Jackss",
+      "probability": 0.107
+    },
+    {
+      "hand": "Flush, Hearts, high 9",
+      "probability": 0.106
+    },
+    {
+      "hand": "Three of a Kind, 4s",
+      "probability": 0.105
+    },
+    {
+      "hand": "Full House, Kingss over 8s",
+      "probability": 0.105
+    },
+    {
+      "hand": "Full House, 3s over 8s",
+      "probability": 0.105
+    },
+    {
+      "hand": "Full House, 3s over 9s",
+      "probability": 0.105
+    },
+    {
+      "hand": "Full House, Kingss over 9s",
+      "probability": 0.104
+    },
+    {
+      "hand": "Full House, 3s over 5s",
+      "probability": 0.103
+    },
+    {
+      "hand": "Full House, Kingss over Queenss",
+      "probability": 0.103
+    },
+    {
+      "hand": "Full House, 6s over 5s",
+      "probability": 0.103
+    },
+    {
+      "hand": "Full House, 3s over Acess",
+      "probability": 0.102
+    },
+    {
+      "hand": "Full House, 6s over 8s",
+      "probability": 0.102
+    },
+    {
+      "hand": "Full House, Kingss over 10s",
+      "probability": 0.101
+    },
+    {
+      "hand": "Flush, Spades, high 9",
+      "probability": 0.101
+    },
+    {
+      "hand": "Full House, Kingss over 2s",
+      "probability": 0.101
+    },
+    {
+      "hand": "Full House, 10s over 3s",
+      "probability": 0.099
+    },
+    {
+      "hand": "Full House, 6s over Queenss",
+      "probability": 0.099
+    },
+    {
+      "hand": "Three of a Kind, 7s",
+      "probability": 0.097
+    },
+    {
+      "hand": "Full House, 3s over 4s",
+      "probability": 0.097
+    },
+    {
+      "hand": "Full House, 10s over 6s",
+      "probability": 0.096
+    },
+    {
+      "hand": "Flush, Diamonds, high 10",
+      "probability": 0.095
+    },
+    {
+      "hand": "Full House, 6s over 9s",
+      "probability": 0.095
+    },
+    {
+      "hand": "Full House, Kingss over Acess",
+      "probability": 0.093
+    },
+    {
+      "hand": "Full House, Jackss over 6s",
+      "probability": 0.09
+    },
+    {
+      "hand": "Full House, 10s over Kingss",
+      "probability": 0.088
+    },
+    {
+      "hand": "Full House, 6s over Acess",
+      "probability": 0.087
+    },
+    {
+      "hand": "Full House, Kingss over 7s",
+      "probability": 0.087
+    },
+    {
+      "hand": "Full House, 9s over 3s",
+      "probability": 0.086
+    },
+    {
+      "hand": "Full House, 9s over 6s",
+      "probability": 0.086
+    },
+    {
+      "hand": "Full House, Kingss over 4s",
+      "probability": 0.086
+    },
+    {
+      "hand": "Full House, 9s over Kingss",
+      "probability": 0.086
+    },
+    {
+      "hand": "Full House, Acess over Kingss",
+      "probability": 0.084
+    },
+    {
+      "hand": "Full House, Jackss over 3s",
+      "probability": 0.082
+    },
+    {
+      "hand": "Full House, Queenss over 3s",
+      "probability": 0.082
+    },
+    {
+      "hand": "Full House, 2s over 3s",
+      "probability": 0.081
+    },
+    {
+      "hand": "Full House, 2s over 6s",
+      "probability": 0.081
+    },
+    {
+      "hand": "Full House, Queenss over Kingss",
+      "probability": 0.079
+    },
+    {
+      "hand": "Full House, Queenss over 6s",
+      "probability": 0.079
+    },
+    {
+      "hand": "Full House, 5s over 6s",
+      "probability": 0.079
+    },
+    {
+      "hand": "Full House, 8s over 6s",
+      "probability": 0.077
+    },
+    {
+      "hand": "Full House, Acess over 6s",
+      "probability": 0.077
+    },
+    {
+      "hand": "Full House, Acess over 3s",
+      "probability": 0.076
+    },
+    {
+      "hand": "Full House, 5s over 3s",
+      "probability": 0.076
+    },
+    {
+      "hand": "Full House, 8s over 3s",
+      "probability": 0.075
+    },
+    {
+      "hand": "Flush, Clubs, high 10",
+      "probability": 0.075
+    },
+    {
+      "hand": "Full House, 8s over Kingss",
+      "probability": 0.074
+    },
+    {
+      "hand": "Full House, Jackss over Kingss",
+      "probability": 0.073
+    },
+    {
+      "hand": "Full House, 2s over Kingss",
+      "probability": 0.073
+    },
+    {
+      "hand": "Flush, Spades, high 8",
+      "probability": 0.073
+    },
+    {
+      "hand": "Full House, 4s over 3s",
+      "probability": 0.072
+    },
+    {
+      "hand": "Full House, 5s over Kingss",
+      "probability": 0.066
+    },
+    {
+      "hand": "Full House, 4s over 6s",
+      "probability": 0.066
+    },
+    {
+      "hand": "Flush, Hearts, high 8",
+      "probability": 0.065
+    },
+    {
+      "hand": "Full House, 7s over 6s",
+      "probability": 0.064
+    },
+    {
+      "hand": "Full House, 4s over Kingss",
+      "probability": 0.063
+    },
+    {
+      "hand": "Flush, Diamonds, high 9",
+      "probability": 0.063
+    },
+    {
+      "hand": "Full House, 7s over Kingss",
+      "probability": 0.06
+    },
+    {
+      "hand": "Full House, 10s over 2s",
+      "probability": 0.059
+    },
+    {
+      "hand": "Full House, 7s over 3s",
+      "probability": 0.058
+    },
+    {
+      "hand": "Full House, 10s over Queenss",
+      "probability": 0.057
+    },
+    {
+      "hand": "Full House, 10s over 4s",
+      "probability": 0.056
+    },
+    {
+      "hand": "Full House, 10s over Jackss",
+      "probability": 0.054
+    },
+    {
+      "hand": "Full House, Queenss over 2s",
+      "probability": 0.053
+    },
+    {
+      "hand": "Full House, 9s over Jackss",
+      "probability": 0.053
+    },
+    {
+      "hand": "Full House, 8s over 2s",
+      "probability": 0.052
+    },
+    {
+      "hand": "Full House, Jackss over 4s",
+      "probability": 0.052
+    },
+    {
+      "hand": "Full House, 2s over Acess",
+      "probability": 0.05
+    },
+    {
+      "hand": "Full House, 9s over 8s",
+      "probability": 0.05
+    },
+    {
+      "hand": "Full House, Acess over 2s",
+      "probability": 0.05
+    },
+    {
+      "hand": "Full House, 5s over 8s",
+      "probability": 0.05
+    }
+  ]
+}

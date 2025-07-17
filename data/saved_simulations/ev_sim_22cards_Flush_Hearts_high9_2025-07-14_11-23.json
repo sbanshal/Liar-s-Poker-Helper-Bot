@@ -1,0 +1,17 @@
+{
+  "params": {
+    "n": 22,
+    "x": 3,
+    "cards": [
+      "2 of Hearts",
+      "9 of Hearts",
+      "A of Spades"
+    ],
+    "last_bid": "Flush, Hearts, high 9",
+    "threshold": 0.05,
+    "simulations": 500,
+    "sampling": true,
+    "hands_per_sim": 20
+  },
+  "results": []
+}
