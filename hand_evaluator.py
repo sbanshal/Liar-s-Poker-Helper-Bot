@@ -91,6 +91,6 @@ def describe_hand(hand_type: str, values: List[int], suits: List[str] = None) ->
     elif hand_type == "Straight Flush":
         return f"{hand_type}, {suits[0]}, {low} to {rank0}" if suits else f"{hand_type}, {low} to {rank0}"
     elif hand_type == "Royal Flush":
-        return "Royal Flush"
+        return f"{hand_type}, {suits[0]}, 10 to A" if suits else f"{hand_type}, 10 to A"
     else:
         return f"{hand_type}, high {rank0}"

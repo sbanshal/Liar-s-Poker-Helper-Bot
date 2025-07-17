@@ -44,12 +44,20 @@ hand_types = [
     "Flush", "Full House", "Four of a Kind", "Straight Flush", "Royal Flush"
 ]
 
+
+RANK_TO_VALUE = {
+    "2": 2, "3": 3, "4": 4, "5": 5, "6": 6,
+    "7": 7, "8": 8, "9": 9, "10": 10,
+    "J": 11, "Q": 12, "K": 13, "A": 14
+}
+
+
 # Bid Section
 def render_bid_section():
     st.markdown("### Select the last bid you must respond to:")
     hand_type = st.selectbox("Hand Type", hand_types)
-    bid_str = ""
 
+    # Optional: show image
     hand_images = {
         "High Card": "high_card.png",
         "One Pair": "pair.png",
@@ -62,53 +70,46 @@ def render_bid_section():
         "Straight Flush": "straight_flush.png",
         "Royal Flush": "royal_flush.png"
     }
+    st.image(f"images/{hand_images[hand_type]}", use_container_width=True)
 
-    image_path = f"images/{hand_images[hand_type]}"
-    st.image(image_path, use_container_width=True)
+    primary = secondary = suit = range_start = range_end = None
 
-    if hand_type == "One Pair":
-        primary = st.selectbox("Rank of the Pair", ranks)
-        bid_str = f"One Pair, {primary}s"
+    if hand_type == "High Card":
+        primary = RANK_TO_VALUE[st.selectbox("High Card Rank", ranks)]
+    elif hand_type == "One Pair":
+        primary = RANK_TO_VALUE[st.selectbox("Rank of the Pair", ranks)]
     elif hand_type == "Two Pair":
-        primary = st.selectbox("First Pair Rank", ranks)
-        secondary = st.selectbox("Second Pair Rank", [r for r in ranks if r != primary])
-        bid_str = f"Two Pair, {primary}s and {secondary}s"
+        primary = RANK_TO_VALUE[st.selectbox("First Pair Rank", ranks)]
+        secondary = RANK_TO_VALUE[st.selectbox("Second Pair Rank", [r for r in ranks if RANK_TO_VALUE[r] != primary])]
     elif hand_type == "Three of a Kind":
-        primary = st.selectbox("Rank for Trips", ranks)
-        bid_str = f"Three of a Kind, {primary}s"
+        primary = RANK_TO_VALUE[st.selectbox("Rank for Trips", ranks)]
     elif hand_type == "Straight":
-        start = st.selectbox("Straight Start", ["A"] + ranks[:9])
-        if start in ["J", "Q", "K"]:
-            st.error("Straight cannot start at Jack or higher.")
-        end = "5" if start == "A" else ranks[ranks.index(start) + 4]
-        bid_str = f"Straight, {start} to {end}"
+        options = ["A"] + ranks[:9]
+        start = st.selectbox("Straight Start", options)
+        range_start = RANK_TO_VALUE[start]
+        range_end = 5 if start == "A" else range_start + 4
+        if range_end > 14:
+            range_end = 14
     elif hand_type == "Flush":
-        high_card = st.selectbox("High Card", ranks[4:])
+        primary = RANK_TO_VALUE[st.selectbox("High Card", ranks[4:])]
         suit = st.selectbox("Suit", suits)
-        bid_str = f"Flush, {suit}, high {high_card}"
     elif hand_type == "Full House":
-        trips = st.selectbox("Trips Rank", ranks)
-        pair = st.selectbox("Pair Rank", [r for r in ranks if r != trips])
-        bid_str = f"Full House, {trips}s over {pair}s"
+        primary = RANK_TO_VALUE[st.selectbox("Trips Rank", ranks)]
+        secondary = RANK_TO_VALUE[st.selectbox("Pair Rank", [r for r in ranks if RANK_TO_VALUE[r] != primary])]
     elif hand_type == "Four of a Kind":
-        primary = st.selectbox("Quads Rank", ranks)
-        bid_str = f"Four of a Kind, {primary}s"
+        primary = RANK_TO_VALUE[st.selectbox("Quads Rank", ranks)]
     elif hand_type == "Straight Flush":
-        start = st.selectbox("Straight Flush Start", ["A"] + ranks[:8])
-        if start == "10":
-            st.error("Start at 10 is reserved for Royal Flush.")
-        end = "5" if start == "A" else ranks[ranks.index(start) + 4]
+        options = ["A"] + ranks[:8]
+        start = st.selectbox("Straight Start", options)
         suit = st.selectbox("Suit", suits)
-        bid_str = f"Straight Flush, {start} to {end} of {suit}"
+        range_start = RANK_TO_VALUE[start]
+        range_end = 5 if start == "A" else range_start + 4
+        if range_end > 14:
+            range_end = 14
     elif hand_type == "Royal Flush":
         suit = st.selectbox("Suit", suits)
-        bid_str = f"Straight Flush, 10 to A of {suit}"
-    else:
-        high = st.selectbox("High Card Rank", ranks)
-        bid_str = f"High Card, {high}"
 
-    st.subheader(f"Last Bid: {bid_str}")
-    return bid_str
+    return hand_type, primary, secondary, suit, range_start, range_end
 
 # Card Input Section
 def render_card_input_section():
@@ -165,7 +166,46 @@ with st.expander("Game Instructions (click to expand)", expanded=False):
     - The simulation tells you if stronger hands are likely enough to justify raising.
     """)
 
-bid_str = render_bid_section()
+from bid import Bid
+from hand_evaluator import describe_hand
+
+hand_type, primary, secondary, suit, range_start, range_end = render_bid_section()
+
+parsed_bid = Bid(
+    hand_type=hand_type,
+    primary=primary,
+    secondary=secondary,
+    suit=suit,
+    range_start=range_start,
+    range_end=range_end
+)
+
+if hand_type in ["Straight", "Straight Flush"]:
+    if parsed_bid.range_start is not None and parsed_bid.range_end is not None:
+        high = parsed_bid.range_start
+        low = parsed_bid.range_end
+        if hand_type in ["Straight", "Straight Flush"] and parsed_bid.range_start == 14 and parsed_bid.range_end == 5:
+            value_list = list(range(5, 15)) 
+        else:
+            value_list = list(range(max(low, high), min(low, high) - 1, -1)) 
+    else:
+        value_list = []
+elif hand_type == "Royal Flush":
+    value_list = [10, 11, 12, 13, 14]
+else:
+    value_list = [v for v in [parsed_bid.primary, parsed_bid.secondary] if v is not None]
+
+if not value_list:
+    bid_str = hand_type
+else:
+    bid_str = describe_hand(
+        hand_type=parsed_bid.hand_type,
+        values=value_list,
+        suits=[parsed_bid.suit] if parsed_bid.suit else None
+    )
+
+st.subheader(f"Last Bid: {bid_str}")
+
 your_cards = render_card_input_section()
 total_cards, thresh, _ = render_game_settings()
 sample_override = 1000
@@ -213,6 +253,15 @@ if st.button("Simulate and Decide"):
 
                 import os
                 os.makedirs("data", exist_ok=True)
+
+                output = {
+                    "hand": your_cards,
+                    "last_bid": bid_str,
+                    "n": total_cards,
+                    "threshold": thresh,
+                    "results": results,
+                    "standard_error": 0.016
+                }
 
                 with open("data/full_output.json", "w") as f:
                     json.dump(output, f, indent=2)
