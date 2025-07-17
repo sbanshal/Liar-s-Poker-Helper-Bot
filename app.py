@@ -145,14 +145,6 @@ def render_game_settings():
 
     sample_override = 1000
 
-    est_sec = sample_override * 0.33
-    est_min = est_sec / 60
-
-    if est_min < 1:
-        st.caption(f"Estimated Runtime: ~{int(est_sec)} seconds")
-    else:
-        st.caption(f"Estimated Runtime: ~{round(est_min, 1)} minutes")
-
     return total_cards, thresh, sample_override
 
 # Main App
@@ -215,9 +207,18 @@ st.divider()
 if st.button("Simulate and Decide"):
     try:
         parsed_cards = parse_card_list(your_cards)
+
+        progress_bar = st.progress(0)
+        progress_placeholder = st.empty()
+
+        def update_progress(current, total):
+            percent = int(current / total * 100)
+            progress_bar.progress(percent)
+            progress_placeholder.markdown(f"**Progress:** {percent}% Complete")
+        
         parsed_bid = parse_bid(bid_str)
 
-        with st.spinner("Simulating... This may take a few seconds."):
+        with st.spinner("Simulating... This may take a few minutes."):
             start = time.time()
             results = simulate_presence_probability(
                 known_cards=parsed_cards,
@@ -225,10 +226,13 @@ if st.button("Simulate and Decide"):
                 last_bid=parsed_bid,
                 threshold=thresh,
                 show_timing=True,
-                max_samples=sample_override
+                max_samples=sample_override,
+                progress_callback=update_progress
             )
             dist = results.get("hand_type_distribution", {})
             elapsed = results.get("elapsed_time", time.time() - start)
+
+            progress_bar.empty()
 
             presence_prob = results.get("presence_probability", 0)
             st.subheader(f"Probability a stronger hand exists: {presence_prob * 100:.2f}%")

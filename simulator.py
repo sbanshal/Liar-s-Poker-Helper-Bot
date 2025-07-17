@@ -5,7 +5,7 @@ from collections import Counter
 from typing import List, Dict
 from itertools import combinations
 from tqdm import tqdm
-
+from typing import Callable, Optional 
 from card import Card
 from utils import generate_deck, remove_known_cards
 from hand_evaluator import evaluate_hand_from_tuples, describe_hand
@@ -24,7 +24,8 @@ def simulate_presence_probability(
     last_bid: Bid,
     threshold: float = 0.05,
     max_samples: int = DEFAULT_MC_SAMPLES,
-    show_timing: bool = True
+    show_timing: bool = True,
+    progress_callback: Optional[Callable[[int, int], None]] = None
 ) -> Dict:
 
     start_time = time.time()
@@ -52,7 +53,9 @@ def simulate_presence_probability(
         if seen_this_pool:
             hit_count += 1
 
-    for _ in tqdm(range(max_samples), desc="Presence Monte Carlo"):
+    for i in range(max_samples):
+        if progress_callback:
+            progress_callback(i + 1, max_samples)
         draw = random.sample(remaining_deck, cards_to_draw)
         pool = known_cards + draw
 
@@ -69,7 +72,6 @@ def simulate_presence_probability(
             hit_count += 1
 
         total_samples += 1
-
 
     presence_probability = hit_count / total_samples if total_samples else 0
 
