@@ -170,11 +170,11 @@ with col2:
     thresh = st.slider("Probability threshold", 0.0, 1.0, 0.50, 0.01)
 
 sample_override = st.number_input(
-    "Monte Carlo sample count (optional)",
-    min_value=1000,
-    max_value=1_000_000,
-    step=1000,
-    value=100_000
+    "Sample Count",
+    min_value=1_000,
+    max_value=10_000,
+    step=100,
+    value=1_000
 )
 
 est_min = max(1, (sample_override // 500) // 60)
@@ -202,39 +202,41 @@ if st.button("Simulate and Decide"):
                 max_samples=sample_override
             )
 
+            dist = results.get("hand_type_distribution", {})
+            elapsed = results.get("elapsed_time", time.time() - start)
+
             presence_prob = results.get("presence_probability", 0)
             st.subheader(f"Probability a stronger hand exists: {presence_prob * 100:.2f}%")
 
             matching = results.get("matching_hands", {})
             if matching:
-                st.markdown("### Stronger Hands Detected in Pools:")
-                for hand, count in sorted(matching.items(), key=lambda x: -x[1]):
-                    st.write(f"- {hand}: found in {count} pools")
+                st.success("Stronger hand(s) likely exist. Suggestion: Call BS or Raise.")
+                st.markdown("### Stronger Hands Found in Pools (Above Threshold):")
+
+            total = results["total_samples"]
+            filtered_matches = {
+                hand: count for hand, count in matching.items()
+                if (count / total) >= thresh
+            }
+
+            if not filtered_matches:
+                st.info("No stronger hands exceeded the threshold.")
             else:
-                st.warning("No stronger hands were found in any sampled pool.")
+                for hand, count in sorted(filtered_matches.items(), key=lambda x: -(x[1] / total)):
+                    prob = count / total
+                    st.write(f"- {hand} — {prob * 100:.1f}%")
 
-            elapsed = time.time() - start
+                filtered_json = json.dumps(
+                    {hand: round(count / total, 4) for hand, count in filtered_matches.items()},
+                    indent=2
+                )
+                st.download_button(
+                    "Download Filtered Results (JSON)",
+                    data=filtered_json,
+                    file_name="filtered_matching_hands.json",
+                    mime="application/json"
+                )
 
-            if elapsed > 300:
-                st.error(f"Simulation took too long: {elapsed:.2f} sec")
-            elif elapsed > 120:
-                st.warning(f"Long simulation: {elapsed:.2f} sec")
-            else:
-                st.caption(f"Simulation Time: {elapsed:.2f} seconds")
-
-
-        presence_prob = results.get("presence_probability", 0)
-        matching = results.get("matching_hands", {})
-        dist = results.get("hand_type_distribution", {})
-        elapsed = results.get("elapsed_time", 0)
-
-        if matching:
-            st.success("Stronger hand(s) likely exist. Suggestion: Call BS or Raise.")
-            st.markdown("### Stronger Hands Found in Pools:")
-            for hand, count in sorted(matching.items(), key=lambda x: -x[1]):
-                st.write(f"- {hand}: seen in {count} simulated pools")
-        else:
-            st.info("No stronger hands found in any simulated pool. Suggestion: Raise or stay.")
 
 
         st.caption(f"Simulation completed in {elapsed:.2f} seconds")

@@ -13,7 +13,7 @@ from bid import Bid
 from constants import HAND_RANKS
 
 # Constants
-DEFAULT_MC_SAMPLES = 100_000
+DEFAULT_MC_SAMPLES = 1_000
 MAX_RUNTIME_SECONDS = 300
 CONFIDENCE_EPSILON = 0.01
 
@@ -40,6 +40,19 @@ def simulate_presence_probability(
     total_samples = 0
     matching_hands = Counter()
 
+    if len(known_cards) >= 5:
+        seen_this_pool = set()
+        for hand in combinations(known_cards, 5):
+            hand_type, hand_vals = evaluate_hand_from_tuples([(c.value, c.suit) for c in hand])
+            if beats_bid_direct(hand_type, hand_vals, last_bid):
+                desc = describe_hand(hand_type, hand_vals, [c.suit for c in hand])
+                if desc not in seen_this_pool:
+                    matching_hands[desc] += 1
+                    seen_this_pool.add(desc)
+
+        if seen_this_pool:
+            hit_count += 1
+
     for _ in tqdm(range(max_samples), desc="Presence Monte Carlo"):
         elapsed = time.time() - start_time
         if elapsed > MAX_RUNTIME_SECONDS:
@@ -49,16 +62,20 @@ def simulate_presence_probability(
         draw = random.sample(remaining_deck, cards_to_draw)
         pool = known_cards + draw
 
-        found = False
+        seen_this_pool = set()
         for hand in combinations(pool, 5):
             hand_type, hand_vals = evaluate_hand_from_tuples([(c.value, c.suit) for c in hand])
             if beats_bid_direct(hand_type, hand_vals, last_bid):
                 desc = describe_hand(hand_type, hand_vals, [c.suit for c in hand])
-                matching_hands[desc] += 1
-                hit_count += 1
-                found = True
-                break  # only one match needed per simulation
+                if desc not in seen_this_pool:
+                    matching_hands[desc] += 1
+                    seen_this_pool.add(desc)
+
+        if seen_this_pool:
+            hit_count += 1
+
         total_samples += 1
+
 
     presence_probability = hit_count / total_samples if total_samples else 0
 
