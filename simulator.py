@@ -4,7 +4,6 @@ import math
 from collections import Counter
 from typing import List, Dict
 from itertools import combinations
-from tqdm import tqdm
 from typing import Callable, Optional 
 from card import Card
 from utils import generate_deck, remove_known_cards
@@ -60,10 +59,11 @@ def simulate_presence_probability(
         pool = known_cards + draw
 
         seen_this_pool = set()
-        for hand in combinations(pool, 5):
-            hand_type, hand_vals = evaluate_hand_from_tuples([(c.value, c.suit) for c in hand])
+        precomputed = [(c.value, c.suit) for c in pool]
+        for hand in combinations(precomputed, 5):
+            hand_type, hand_vals = evaluate_hand_from_tuples(hand)
             if beats_bid_direct(hand_type, hand_vals, last_bid):
-                desc = describe_hand(hand_type, hand_vals, [c.suit for c in hand])
+                desc = describe_hand(hand_type, hand_vals, [s for _, s in hand])
                 if desc not in seen_this_pool:
                     matching_hands[desc] += 1
                     seen_this_pool.add(desc)
@@ -101,7 +101,11 @@ def beats_bid_direct(hand_type: str, hand_values: List[int], bid: Bid) -> bool:
     if hand_type in ["One Pair", "Three of a Kind", "Four of a Kind"]:
         return hand_values[0] > (bid.primary or 0)
     elif hand_type == "Two Pair":
-        return (hand_values[0], hand_values[1]) > (bid.primary or 0, bid.secondary or 0)
+        hv1, hv2 = hand_values[:2]
+        b1, b2 = bid.primary or 0, bid.secondary or 0
+        hv_pair = tuple(sorted((hv1, hv2), reverse=True))
+        bid_pair = tuple(sorted((b1, b2), reverse=True))
+        return hv_pair > bid_pair
     elif hand_type == "Full House":
         return (hand_values[0], hand_values[1]) > (bid.primary or 0, bid.secondary or 0)
     elif hand_type in ["Straight", "Straight Flush"]:

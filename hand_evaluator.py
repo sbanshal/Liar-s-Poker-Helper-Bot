@@ -11,7 +11,9 @@ def evaluate_hand_cached(values_tuple: Tuple[int, ...], suits_tuple: Tuple[str, 
     value_counts = Counter(values)
     unique_values = sorted(set(values), reverse=True)
     is_flush = len(set(suits)) == 1
-    is_straight = len(unique_values) == 5 and unique_values[0] - unique_values[4] == 4
+    is_straight = (
+        len(unique_values) == 5 and unique_values[0] - unique_values[4] == 4
+    ) or unique_values == [14, 13, 12, 11, 10]
 
     if set(values) == {14, 2, 3, 4, 5}:
         is_straight = True
