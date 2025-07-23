@@ -3,7 +3,7 @@ import streamlit as st
 from simulator import simulate_presence_probability
 from bid import parse_bid
 from utils import parse_card_list
-from constants import HAND_RANKS
+from constants import HAND_RANKS, RANKS, SUITS, HAND_TYPES, RANK_TO_VALUE
 import json
 import time
 import matplotlib.pyplot as plt
@@ -36,26 +36,10 @@ st.markdown(
 
 st.set_page_config(page_title="Liar's Poker Bid Helper", layout="wide")
 
-# Constants
-ranks = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
-suits = ["Hearts", "Diamonds", "Clubs", "Spades"]
-hand_types = [
-    "High Card", "One Pair", "Two Pair", "Three of a Kind", "Straight",
-    "Flush", "Full House", "Four of a Kind", "Straight Flush", "Royal Flush"
-]
-
-
-RANK_TO_VALUE = {
-    "2": 2, "3": 3, "4": 4, "5": 5, "6": 6,
-    "7": 7, "8": 8, "9": 9, "10": 10,
-    "J": 11, "Q": 12, "K": 13, "A": 14
-}
-
-
 # Bid Section
 def render_bid_section():
     st.markdown("### Select the last bid you must respond to:")
-    hand_type = st.selectbox("Hand Type", hand_types)
+    hand_type = st.selectbox("Hand Type", HAND_TYPES)
 
     # Optional: show image
     hand_images = {
@@ -75,39 +59,39 @@ def render_bid_section():
     primary = secondary = suit = range_start = range_end = None
 
     if hand_type == "High Card":
-        primary = RANK_TO_VALUE[st.selectbox("High Card Rank", ranks)]
+        primary = RANK_TO_VALUE[st.selectbox("High Card Rank", RANKS)]
     elif hand_type == "One Pair":
-        primary = RANK_TO_VALUE[st.selectbox("Rank of the Pair", ranks)]
+        primary = RANK_TO_VALUE[st.selectbox("Rank of the Pair", RANKS)]
     elif hand_type == "Two Pair":
-        primary = RANK_TO_VALUE[st.selectbox("First Pair Rank", ranks)]
-        secondary = RANK_TO_VALUE[st.selectbox("Second Pair Rank", [r for r in ranks if RANK_TO_VALUE[r] != primary])]
+        primary = RANK_TO_VALUE[st.selectbox("First Pair Rank", RANKS)]
+        secondary = RANK_TO_VALUE[st.selectbox("Second Pair Rank", [r for r in RANKS if RANK_TO_VALUE[r] != primary])]
     elif hand_type == "Three of a Kind":
-        primary = RANK_TO_VALUE[st.selectbox("Rank for Trips", ranks)]
+        primary = RANK_TO_VALUE[st.selectbox("Rank for Trips", RANKS)]
     elif hand_type == "Straight":
-        options = ["A"] + ranks[:9]
+        options = ["A"] + RANKS[:9]
         start = st.selectbox("Straight Start", options)
         range_start = RANK_TO_VALUE[start]
         range_end = 5 if start == "A" else range_start + 4
         if range_end > 14:
             range_end = 14
     elif hand_type == "Flush":
-        primary = RANK_TO_VALUE[st.selectbox("High Card", ranks[4:])]
-        suit = st.selectbox("Suit", suits)
+        primary = RANK_TO_VALUE[st.selectbox("High Card", RANKS[4:])]
+        suit = st.selectbox("Suit", SUITS)
     elif hand_type == "Full House":
-        primary = RANK_TO_VALUE[st.selectbox("Trips Rank", ranks)]
-        secondary = RANK_TO_VALUE[st.selectbox("Pair Rank", [r for r in ranks if RANK_TO_VALUE[r] != primary])]
+        primary = RANK_TO_VALUE[st.selectbox("Trips Rank", RANKS)]
+        secondary = RANK_TO_VALUE[st.selectbox("Pair Rank", [r for r in RANKS if RANK_TO_VALUE[r] != primary])]
     elif hand_type == "Four of a Kind":
-        primary = RANK_TO_VALUE[st.selectbox("Quads Rank", ranks)]
+        primary = RANK_TO_VALUE[st.selectbox("Quads Rank", RANKS)]
     elif hand_type == "Straight Flush":
-        options = ["A"] + ranks[:8]
+        options = ["A"] + RANKS[:8]
         start = st.selectbox("Straight Start", options)
-        suit = st.selectbox("Suit", suits)
+        suit = st.selectbox("Suit", SUITS)
         range_start = RANK_TO_VALUE[start]
         range_end = 5 if start == "A" else range_start + 4
         if range_end > 14:
             range_end = 14
     elif hand_type == "Royal Flush":
-        suit = st.selectbox("Suit", suits)
+        suit = st.selectbox("Suit", SUITS)
 
     return hand_type, primary, secondary, suit, range_start, range_end
 
@@ -122,9 +106,9 @@ def render_card_input_section():
             st.markdown(f"<div style='font-weight:600; font-size:16px;'>Card {i+1}</div>", unsafe_allow_html=True)
             col1, col2 = st.columns(2)
             with col1:
-                rank = st.selectbox("Rank", ranks, key=f"rank_{i}")
+                rank = st.selectbox("Rank", RANKS, key=f"rank_{i}")
             with col2:
-                suit = st.selectbox("Suit", suits, key=f"suit_{i}")
+                suit = st.selectbox("Suit", SUITS, key=f"suit_{i}")
             cards.append(f"{rank} of {suit}")
 
     if len(cards) != len(set(cards)):
@@ -267,8 +251,9 @@ if st.button("Simulate and Decide"):
                     "standard_error": 0.016
                 }
 
-                with open("data/full_output.json", "w") as f:
-                    json.dump(output, f, indent=2)
+                from utils import save_json
+                save_path = save_json(output)
+                st.caption(f"Saved to {save_path}")
 
                 st.success("Filtered results saved to: `data/simulation_result.json`")
 

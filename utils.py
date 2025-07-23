@@ -1,5 +1,17 @@
 from card import Card, SUITS, RANKS, parse_card
 from typing import List
+import json
+from pathlib import Path
+import datetime
+from typing import Any
+
+def save_json(data: Any, folder: str = "data", prefix: str = "output") -> str:
+    Path(folder).mkdir(exist_ok=True)
+    timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+    path = Path(folder) / f"{prefix}_{timestamp}.json"
+    with open(path, "w") as f:
+        json.dump(data, f, indent=2)
+    return str(path)
 
 def generate_deck() -> List[Card]:
     """Generate a full 52-card deck."""

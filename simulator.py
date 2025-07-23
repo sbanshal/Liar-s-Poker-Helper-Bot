@@ -10,6 +10,7 @@ from utils import generate_deck, remove_known_cards
 from hand_evaluator import evaluate_hand_from_tuples, describe_hand
 from bid import Bid
 from constants import HAND_RANKS
+from typing import Dict, Any
 
 # Constants
 DEFAULT_MC_SAMPLES = 1_000
@@ -25,7 +26,7 @@ def simulate_presence_probability(
     max_samples: int = DEFAULT_MC_SAMPLES,
     show_timing: bool = True,
     progress_callback: Optional[Callable[[int, int], None]] = None
-) -> Dict:
+) -> Dict[str, Any]:
 
     start_time = time.time()
     deck = generate_deck()
