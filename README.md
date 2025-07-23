@@ -20,12 +20,12 @@ This web-based simulation tool helps players of the **Liar’s Poker Collective 
 
 ---
 
-## Game Rules & Hand Rankings
+## Game Handbook and Guides
 
 This project uses the “Collective Hold’em” ruleset of Liar’s Poker.
 
-- [Game Handbook and Bid Progressions (PDF)](Liar's%20Poker%20Handbook%20and%20Bid%20Progressions.pdf)
-- [Bid Interpretation Guide (PDF)](Liar's%20Poker%20–%20Bid%20Interpretation%20Guide.pdf)
+- [Game Handbook and Bid Progressions (PDF)](./Liar's%20Poker%20Handbook%20and%20Bid%20Progressions.pdf)
+- [Bid Interpretation Guide (PDF)](./Liar's%20Poker%20–%20Bid%20Interpretation%20Guide.pdf)
 
 Key bidding clarifications:
 - Bids must be fulfilled exactly — stronger hands don’t count
