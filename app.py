@@ -266,12 +266,24 @@ if st.button("Simulate and Decide"):
     except Exception as e:
         st.error(f"Error during simulation: {e}")
 
-    st.markdown(
-        """
-        <hr style="margin-top: 50px;">
-        <div style='text-align: center; font-size: 0.9em; color: gray;'>
-            © 2025 Shlok Banshal. All rights reserved.
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+
+st.markdown("")
+
+st.markdown("<hr>", unsafe_allow_html=True)
+
+footer = """
+<style>
+.footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 0.9em;
+    color: gray;
+    margin-top: 3em;
+}
+</style>
+<div class="footer">© 2025 Shlok Banshal. All rights reserved.</div>
+"""
+
+st.markdown(footer, unsafe_allow_html=True)
