@@ -2,11 +2,11 @@
 
 This web-based simulation tool helps players of the **Liar’s Poker Collective Hold’em Variant** evaluate the plausibility of specific 5-card poker hand bids.
 
-🃏 [Launch the app here](https://liar-s-poker-apper-bot-bgvknhv8kzniydeygtqr6j.streamlit.app/)
+[Launch the app here](https://liar-s-poker-apper-bot-bgvknhv8kzniydeygtqr6j.streamlit.app/)
 
 ---
 
-## 🎯 What It Does
+## What It Does
 
 - You input:
   - Your hand (e.g., `4 of Hearts`, `10 of Spades`)
@@ -20,12 +20,12 @@ This web-based simulation tool helps players of the **Liar’s Poker Collective 
 
 ---
 
-## 📜 Game Rules & Hand Rankings
+## Game Rules & Hand Rankings
 
 This project uses the “Collective Hold’em” ruleset of Liar’s Poker.
 
-- 🎮 [Game Handbook and Bid Progressions (PDF)](Liar's%20Poker%20Handbook%20and%20Bid%20Progressions.pdf)
-- 📘 [Bid Interpretation Guide (PDF)](Liar's%20Poker%20–%20Bid%20Interpretation%20Guide.pdf)
+- [Game Handbook and Bid Progressions (PDF)](Liar's%20Poker%20Handbook%20and%20Bid%20Progressions.pdf)
+- [Bid Interpretation Guide (PDF)](Liar's%20Poker%20–%20Bid%20Interpretation%20Guide.pdf)
 
 Key bidding clarifications:
 - Bids must be fulfilled exactly — stronger hands don’t count
@@ -35,7 +35,7 @@ Key bidding clarifications:
 
 ---
 
-## 📦 How to Run Locally
+## How to Run Locally
 
 ```bash
 pip install -r requirements.txt
@@ -44,21 +44,21 @@ streamlit run app.py
 
 ---
 
-## 🚀 Deployment
+## Deployment
 
 This app is deployed publicly via [Streamlit Cloud](https://streamlit.io/cloud).  
 It auto-updates with every push to the `main` branch.
 
 ---
 
-## 🙌 Contributing
+## Contributing
 
 Pull requests and feature suggestions welcome!  
 This project was built to test probability assumptions in advanced bluff-based gameplay — but can be extended into teaching tools, AI bidding bots, or player analytics.
 
 ---
 
-## 📫 Contact
+## Contact
 
 Made by [Shlok Banshal](mailto:shlok.banshal@duke.edu)
 
