@@ -2,14 +2,10 @@
 import streamlit as st
 from simulator import simulate_presence_probability
 from bid import parse_bid
-from utils import parse_card_list
+from utils import parse_card_list, format_bid
 from constants import HAND_RANKS, RANKS, SUITS, HAND_TYPES, RANK_TO_VALUE
 import json
 import time
-import matplotlib.pyplot as plt
-import matplotlib as mpl
-
-mpl.rcParams['font.family'] = ['EB Garamond', 'serif']
 
 st.markdown(
     """
