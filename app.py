@@ -2,7 +2,8 @@
 import streamlit as st
 from simulator import simulate_presence_probability
 from bid import parse_bid
-from utils import parse_card_list, format_bid
+from utils import parse_card_list, format_bid, format_simulation_for_ml, save_json
+
 from constants import HAND_RANKS, RANKS, SUITS, HAND_TYPES, RANK_TO_VALUE
 import json
 import time
@@ -238,17 +239,24 @@ if st.button("Simulate and Decide"):
                 import os
                 os.makedirs("data", exist_ok=True)
 
-                output = {
-                    "hand": your_cards,
-                    "last_bid": bid_str,
-                    "n": total_cards,
-                    "threshold": thresh,
-                    "results": results,
-                    "standard_error": 0.016
+                bid_output = {
+                    "hand_type": parsed_bid.hand_type,
+                    "primary": parsed_bid.primary,
+                    "secondary": parsed_bid.secondary,
+                    "suit": parsed_bid.suit,
+                    "range_start": parsed_bid.range_start,
+                    "range_end": parsed_bid.range_end
                 }
 
-                from utils import save_json
-                save_path = save_json(output)
+                ml_output = format_simulation_for_ml(
+                    hand=parsed_cards,
+                    bid=bid_output,
+                    total_cards=total_cards,
+                    threshold=thresh,
+                    results=results
+                )
+
+                save_path = save_json(ml_output)
                 st.caption(f"Saved to {save_path}")
 
                 st.success("Filtered results saved to: `data/simulation_result.json`")

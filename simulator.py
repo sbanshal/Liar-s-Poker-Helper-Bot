@@ -39,6 +39,7 @@ def simulate_presence_probability(
     hit_count = 0
     total_samples = 0
     matching_hands = Counter()
+    all_hands_seen = Counter()
 
     if len(known_cards) >= 5:
         seen_this_pool = set()
@@ -63,8 +64,11 @@ def simulate_presence_probability(
         precomputed = [(c.value, c.suit) for c in pool]
         for hand in combinations(precomputed, 5):
             hand_type, hand_vals = evaluate_hand_from_tuples(hand)
+            desc = describe_hand(hand_type, hand_vals, [s for _, s in hand])
+
+            all_hands_seen[desc] += 1
+
             if beats_bid_direct(hand_type, hand_vals, last_bid):
-                desc = describe_hand(hand_type, hand_vals, [s for _, s in hand])
                 if desc not in seen_this_pool:
                     matching_hands[desc] += 1
                     seen_this_pool.add(desc)
@@ -83,6 +87,7 @@ def simulate_presence_probability(
     return {
         "presence_probability": presence_probability,
         "matching_hands": dict(matching_hands),
+        "all_hands_seen": dict(all_hands_seen),
         "total_samples": total_samples,
         "elapsed_time": time.time() - start_time
     }
