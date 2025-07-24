@@ -265,7 +265,8 @@ if st.button("Simulate and Decide"):
                 import requests
 
                 try:
-                    requests.post("https://liars-poker-uploader.onrender.com/upload", json=ml_output)
+                    response = requests.post("https://liars-poker-uploader.onrender.com/upload", json=ml_output)
+                    
                     if response.ok:
                         st.success("Simulation uploaded to central JSON bank.")
                     else:
