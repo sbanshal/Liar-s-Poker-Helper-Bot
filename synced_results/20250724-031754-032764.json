@@ -1,0 +1,81 @@
+{
+  "inputs": {
+    "hand": [
+      "10 of Hearts",
+      "8 of Hearts",
+      "9 of Hearts"
+    ],
+    "bid": {
+      "hand_type": "One Pair",
+      "primary": 7,
+      "secondary": null,
+      "suit": null,
+      "range_start": null,
+      "range_end": null
+    },
+    "total_cards": 20,
+    "threshold": 0.5
+  },
+  "outputs": {
+    "presence_probability": 1.0,
+    "stronger_hands": [
+      {
+        "type": "One Pair",
+        "primary_rank": "9",
+        "frequency": 0.731
+      },
+      {
+        "type": "One Pair",
+        "primary_rank": "8",
+        "frequency": 0.715
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "9 and 8",
+        "frequency": 0.519
+      },
+      {
+        "type": "Straight",
+        "frequency": 0.698
+      },
+      {
+        "type": "Flush",
+        "suit": "Hearts",
+        "high_card": "10",
+        "frequency": 0.659
+      },
+      {
+        "type": "Straight",
+        "frequency": 0.686
+      },
+      {
+        "type": "Straight",
+        "frequency": 0.578
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "10 and 9",
+        "frequency": 0.528
+      },
+      {
+        "type": "One Pair",
+        "primary_rank": "10",
+        "frequency": 0.734
+      },
+      {
+        "type": "Straight",
+        "frequency": 0.707
+      },
+      {
+        "type": "Straight",
+        "frequency": 0.587
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "10 and 8",
+        "frequency": 0.527
+      }
+    ],
+    "suggestion": "Raise"
+  }
+}
