@@ -265,10 +265,7 @@ if st.button("Simulate and Decide"):
                 import requests
 
                 try:
-                    response = requests.post(
-                        "https://a26c56e1db68.ngrok-free.app/upload",  # Use your live ngrok URL
-                        json=ml_output
-                    )
+                    requests.post("https://liars-poker-uploader.onrender.com/upload", json=ml_output)
                     if response.ok:
                         st.success("Simulation uploaded to central JSON bank.")
                     else:
