@@ -291,10 +291,10 @@ if st.button("Simulate and Decide"):
                             filename = uploaded.get("file", "").split("/")[-1]
                             url = f"https://liars-poker-uploader.onrender.com/files/{filename}"
 
-                            st.markdown(f"<div class='uniform-text'>✅ Saved remotely as: uploaded_jsons/{filename}</div>", unsafe_allow_html=True)
-                            st.markdown(f"<div class='uniform-text'>🔗 <a href='{url}' target='_blank'>View uploaded file</a></div>", unsafe_allow_html=True)
-                            st.markdown(f"<div class='uniform-text'>💾 Saved locally as: {save_path}</div>", unsafe_allow_html=True)
-                            st.markdown(f"<div class='uniform-text'>⏱️ Simulation completed in {elapsed:.2f} seconds</div>", unsafe_allow_html=True)
+                            st.markdown(f"<div class='uniform-text'>Saved remotely as: uploaded_jsons/{filename}</div>", unsafe_allow_html=True)
+                            st.markdown(f"<div class='uniform-text'><a href='{url}' target='_blank'>View uploaded file</a></div>", unsafe_allow_html=True)
+                            st.markdown(f"<div class='uniform-text'>Saved locally as: {save_path}</div>", unsafe_allow_html=True)
+                            st.markdown(f"<div class='uniform-text'>Simulation completed in {elapsed:.2f} seconds</div>", unsafe_allow_html=True)
                         else:
                             st.warning(f"Upload failed: {response.status_code} — {response.text}")
                     else:
