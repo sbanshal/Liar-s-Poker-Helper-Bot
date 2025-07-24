@@ -218,6 +218,7 @@ if st.button("Simulate and Decide"):
             presence_prob = results.get("presence_probability", 0)
             st.subheader(f"Probability a stronger hand exists: {presence_prob * 100:.2f}%")
 
+
             matching = results.get("matching_hands", {})
             if matching:
                 st.success("Stronger hand(s) likely exist. Suggestion: Call BS or Raise.")
@@ -258,8 +259,22 @@ if st.button("Simulate and Decide"):
 
                 save_path = save_json(ml_output)
                 st.caption(f"Saved to {save_path}")
-
                 st.success("Filtered results saved to: `data/simulation_result.json`")
+
+                # --- SEND TO CENTRAL FLASK COLLECTOR ---
+                import requests
+
+                try:
+                    response = requests.post(
+                        "https://a26c56e1db68.ngrok-free.app/upload",  # Use your live ngrok URL
+                        json=ml_output
+                    )
+                    if response.ok:
+                        st.success("Simulation uploaded to central JSON bank.")
+                    else:
+                        st.warning(f"Upload failed: {response.status_code} — {response.text}")
+                except Exception as e:
+                    st.warning(f"Could not upload result: {e}")
 
         st.caption(f"Simulation completed in {elapsed:.2f} seconds")
 
