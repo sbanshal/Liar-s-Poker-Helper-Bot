@@ -1,3 +1,4 @@
+
 # Liar’s Poker Helper Bot
 
 This tool simulates whether a 5-card poker hand bid is statistically plausible based on a player’s private cards and total cards in play, using combinatorial enumeration and Monte Carlo sampling. Built for the Collective Hold'em variant of Liar’s Poker, it serves as both a teaching tool and a probabilistic strategy aid.
@@ -64,18 +65,19 @@ Hand evaluation covers all standard hand types: high card, pair, two pair, three
 
 ## File Structure
 
-├── app.py # Streamlit UI
-├── simulator.py # Monte Carlo simulation engine
-├── utils.py # Card parsing, deck formatting, JSON output builder
-├── server.py # Flask API to accept JSON and serve it back
-├── download_all.py # Pulls latest results from server daily
-├── synced_results/ # Extracted ZIPs from server
-├── uploaded_jsons/ # Server-stored uploads
-├── test_bid_logic.py # Hand ranking unit tests
-├── requirements.txt # Streamlit, Flask, matplotlib
+```
+├── app.py                 # Streamlit UI
+├── simulator.py           # Monte Carlo simulation engine
+├── utils.py               # Card parsing, deck formatting, JSON output builder
+├── server.py              # Flask API to accept JSON and serve it back
+├── download_all.py        # Pulls latest results from server daily
+├── synced_results/        # Extracted ZIPs from server
+├── uploaded_jsons/        # Server-stored uploads
+├── test_bid_logic.py      # Hand ranking unit tests
+├── requirements.txt       # Streamlit, Flask, matplotlib
 ├── Liar's Poker – Bid Interpretation Guide.pdf
 ├── Liar's Poker Handbook and Bid Progressions.pdf
-
+```
 
 ---
 
@@ -89,8 +91,6 @@ Each run produces a structured `.json` result that includes:
 - A final decision recommendation (`suggestion`) based on threshold
 
 Example:
-
-Each run outputs a `.json` file like this:
 
 ```json
 {
@@ -113,63 +113,74 @@ Each run outputs a `.json` file like this:
     "suggestion": "Call BS or Bluff"
   }
 }
-Stronger hands below the threshold are excluded entirely.
+```
 
-Each output includes a suggestion field to aid decision-making.
+- Stronger hands below the threshold are excluded entirely.
+- Each output includes a suggestion field to aid decision-making.
 
-Automation
+---
+
+## Automation
+
 To automatically sync all submissions:
 
-A cron job is installed locally that runs download_all.py at 8:00 AM daily
-
-This script downloads the remote ZIP archive of all simulation results from /files.zip
-
-It extracts them to a timestamped folder under synced_results/
-
-The ZIP is deleted after extraction
+1. A cron job is installed locally that runs `download_all.py` at 8:00 AM daily
+2. This script downloads the remote ZIP archive of all simulation results from `/files.zip`
+3. It extracts them to a timestamped folder under `synced_results/`
+4. The ZIP is deleted after extraction
 
 You can run it manually too:
 
-bash
-Copy
-Edit
+```bash
 python3 download_all.py
+```
+
 To install the cron job:
 
-bash
-Copy
-Edit
+```bash
 crontab -e
+```
+
 Then add:
 
-bash
-Copy
-Edit
+```bash
 0 8 * * * /Library/Frameworks/Python.framework/Versions/3.9/bin/python3 /Users/shlokbanshal/Downloads/liars_poker_helper_bot/download_all.py
-Server Endpoints (Flask @ Render)
-Deployed at: https://liars-poker-uploader.onrender.com
+```
 
-Route	Method	Description
-/upload	POST	Accepts a new .json simulation
-/files	GET	Lists all stored file names
-/files/<name>	GET	Returns the raw JSON file
-/files.zip	GET	All results zipped into one archive
-/stats (optional)	GET	Returns mean probability + count
+---
 
-Running the App
+## Server Endpoints (Flask @ Render)
+
+Deployed at: [https://liars-poker-uploader.onrender.com](https://liars-poker-uploader.onrender.com)
+
+| Route               | Method | Description                         |
+| ------------------- | ------ | ----------------------------------- |
+| `/upload`           | POST   | Accepts a new `.json` simulation    |
+| `/files`            | GET    | Lists all stored file names         |
+| `/files/<name>`     | GET    | Returns the raw JSON file           |
+| `/files.zip`        | GET    | All results zipped into one archive |
+| `/stats` (optional) | GET    | Returns mean probability + count    |
+
+---
+
+## Running the App
+
 Install dependencies:
 
-bash
-Copy
-Edit
+```bash
 python3 -m pip install -r requirements.txt
+```
+
 Run the Streamlit app:
 
-bash
-Copy
-Edit
+```bash
 python3 -m streamlit run app.py
-Created By
+```
+
+---
+
+## Created By
+
 Built and iteratively refined by Shlok Banshal, Summer 2025.
 
 This project is intended for use in educational tournament settings, simulations, and player testing for Liar's Poker adapted formats.
