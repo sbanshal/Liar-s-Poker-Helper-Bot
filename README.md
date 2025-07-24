@@ -7,7 +7,7 @@ This tool simulates whether a 5-card poker hand bid is statistically plausible b
 
 ## Try the App
 
-- [Launch the Streamlit App](https://share.streamlit.io/sbanshal/liars-poker-helper-bot/main/app.py)
+- [Launch the Streamlit App](https://liar-s-poker-apper-bot-bgvknhv8kzniydeygtqr6j.streamlit.app/)
 - [Liar's Poker – Bid Interpretation Guide (PDF)](https://github.com/sbanshal/Liar-s-Poker-Helper-Bot/raw/main/Liar's%20Poker%20–%20Bid%20Interpretation%20Guide.pdf)
 - [Liar's Poker Handbook and Bid Progressions (PDF)](https://github.com/sbanshal/Liar-s-Poker-Helper-Bot/raw/main/Liar's%20Poker%20Handbook%20and%20Bid%20Progressions.pdf)
 
