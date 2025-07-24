@@ -70,9 +70,12 @@ def format_simulation_for_ml(
 
     stronger_hands = []
     for label, count in results["matching_hands"].items():
-        parsed = parse_hand_key(label)
-        parsed["frequency"] = count / results["total_samples"]
-        stronger_hands.append(parsed)
+        freq = count / results["total_samples"]
+        if freq >= threshold:
+            parsed = parse_hand_key(label)
+            parsed["frequency"] = freq
+            stronger_hands.append(parsed)
+
 
     return {
         "inputs": {
