@@ -1,158 +1,157 @@
 # Liar's Poker Helper Bot
 
-This is an intelligent simulation and strategy tool designed for evaluating bids in the game of Liar’s Poker. It uses Monte Carlo simulations to suggest whether to call or raise based on your hand and public game conditions.
+This tool simulates whether a given bid in Liar's Poker is likely to be true given your own hand and the total number of cards in play. It uses combinatorial enumeration and Monte Carlo simulation to compute the probability that at least one stronger 5-card hand exists.
 
 ---
 
 ## Features
 
-* Streamlit interface for bid simulation and decision making
-* Monte Carlo simulation of millions of hands for statistical backing
-* Automatic decision output based on probability threshold
-* Local and remote saving of results (as `.json`)
-* Centralized Flask server hosted on Render for collecting submissions
-* Daily auto-downloaded results using cron
-* Auto-extracted ZIPs saved to `synced_results/`
+* Streamlit interface for entering bids and cards
+* Monte Carlo simulation using combinatorial sampling of all possible unseen 5-card hands
+* Automatically filters to only show hands above a frequency threshold
+* Local and remote `.json` saving of results
+* Remote server collects data and allows central access to all simulations
+* Daily cron job pulls all results into a local folder and unzips them automatically
 
 ---
 
 ## How It Works
 
-1. User enters hand and bid into the Streamlit UI
-2. Simulation is run using known and unknown cards
-3. Results are formatted into structured JSON, including:
+1. User inputs a bid and cards into the Streamlit app (`app.py`)
+2. The simulation runs (`simulator.py`) and checks if a stronger hand could exist
 
-   * Hand input
-   * Total players
-   * Stronger hands above threshold (only these are saved)
-4. Saved locally to `data/output_<timestamp>.json`
-5. Uploaded to Render via a REST POST to `/upload`
-6. Filename and download link shown in the UI
-7. On the server:
+   * All 5-card combinations from the remaining deck are enumerated
+   * A subset of trials (default 1000) is sampled from random pool configurations
+   * For each trial, we check if any hand beats the given bid
+3. The result is returned as a probability estimate (`presence_probability`)
 
-   * JSONs are saved in `/uploaded_jsons/`
-   * Public `/files.zip` endpoint is updated
+   * The standard error with 1000 trials is approximately 1.6%
+4. All matching hands are filtered to those with frequency ≥ threshold
+5. The result is saved locally and sent to a Flask server
+6. The server stores all simulations in a timestamped `.json` format
 
 ---
 
-## Key Scripts
+## Repository Structure
 
-### `app.py`
-
-* Streamlit interface for bid selection and simulation
-* Cleans and standardizes output format
-* Uniform UI style for feedback
-
-### `download_all.py`
-
-* Downloads `files.zip` from the server
-* Extracts into: `synced_results/<timestamp>/`
-* Deletes ZIP after extraction
-* Can be run manually or scheduled via cron
+```
+├── app.py                 # Streamlit UI for simulation
+├── simulator.py           # Core Monte Carlo logic + enumeration
+├── utils.py               # JSON formatting and deck handling
+├── server.py              # Flask endpoint to collect uploads and serve files
+├── download_all.py        # Downloads + extracts all remote `.json`s daily
+├── synced_results/        # Locally extracted simulation results
+├── uploaded_jsons/        # (on server) All saved results
+├── requirements.txt       # Python dependencies
+└── test_bid_logic.py      # Bid parsing tests
+```
 
 ---
 
-## Cron Automation
+## Data Format
 
-The script `download_all.py` is automatically run every day at 8:00 AM on macOS via `cron`.
+Each `.json` result includes:
 
-Make sure your machine is awake and not asleep if you want the job to fire.
+```json
+{
+  "inputs": {
+    "hand": ["7 of Hearts", "9 of Diamonds"],
+    "bid": {
+      "hand_type": "Two Pair",
+      "primary": "7",
+      "secondary": "2",
+      "suit": null,
+      "range_start": null,
+      "range_end": null
+    },
+    "total_cards": 20,
+    "threshold": 0.05
+  },
+  "outputs": {
+    "presence_probability": 0.731,
+    "stronger_hands": [
+      {"type": "Three of a Kind", "primary_rank": "7", "frequency": 0.12},
+      ...
+    ],
+    "suggestion": "Call BS"
+  }
+}
+```
 
-To edit the schedule:
+* Only `stronger_hands` **above the threshold** are included
+
+---
+
+## Automation
+
+To fetch all uploaded `.json` files daily:
+
+* A cron job is installed locally that runs `download_all.py` every morning at 8:00am
+* This script pulls `files.zip` from the server, extracts it into `synced_results/`, and deletes the zip
+
+To test it manually:
+
+```bash
+python download_all.py
+```
+
+To install the cron job:
 
 ```bash
 crontab -e
 ```
 
-Sample entry:
+Then add:
+
+```
+0 8 * * * /Library/Frameworks/Python.framework/Versions/3.9/bin/python3 /Users/shlokbanshal/Downloads/liars_poker_helper_bot/download_all.py
+```
+
+---
+
+## Server Routes
+
+Server is hosted on Render at:
+[https://liars-poker-uploader.onrender.com](https://liars-poker-uploader.onrender.com)
+
+* `POST /upload` → receives JSON simulation result and stores it
+* `GET /files` → returns list of all stored filenames
+* `GET /files/<filename>` → returns the actual `.json` file
+* `GET /files.zip` → returns all results as a ZIP
+
+---
+
+## Resources
+
+Two supplemental documents are included in this repo:
+
+* **Liar's Poker – Bid Interpretation Guide.pdf** – rules for interpreting each hand type and suit-based bid
+* **Liar's Poker Handbook and Bid Progressions.pdf** – complete hand ranking hierarchy and strategic guidelines
+
+These are useful for players unfamiliar with the structure of valid bids or for instructors teaching the format.
+
+---
+
+## Running the App
+
+Install dependencies:
 
 ```bash
-0 8 * * * /Library/Frameworks/Python.framework/Versions/3.9/bin/python3 /Users/yourname/path/to/download_all.py
+pip install -r requirements.txt
 ```
 
----
-
-## Server Endpoints (Flask)
-
-* `POST /upload` – accepts JSON upload and saves to disk
-* `GET /files` – returns list of all `.json` files
-* `GET /files/<filename>` – returns the raw `.json` file
-* `GET /files.zip` – returns all `.json` files in a single archive
-* `GET /stats` (optional) – returns server-side summary stats
-
-Hosted on: [https://liars-poker-uploader.onrender.com](https://liars-poker-uploader.onrender.com)
-
----
-
-## Data Output Format
-
-Each uploaded `.json` includes:
-
-```json
-{
-  "inputs": {
-    "hand": [...],
-    "bid": ..., 
-    "players": ...
-  },
-  "outputs": {
-    "presence_probability": 0.72,
-    "suggestion": "raise",
-    "stronger_hands": [
-      { "type": "Straight", "frequency": 0.12, ... },
-      ...
-    ]
-  }
-}
-```
-
-Note: Only `stronger_hands` above the threshold are included.
-
----
-
-## Project Structure
-
-```
-├── app.py                 # Streamlit UI
-├── download_all.py        # Daily pull of all JSON results
-├── server.py              # Flask collector backend
-├── synced_results/        # Extracted results per day
-├── uploaded_jsons/        # Stored JSONs (on server only)
-├── utils.py               # Formatter for ML output
-├── simulator.py           # Core simulation logic
-├── bid.py, card.py        # Bid/card parsing logic
-├── requirements.txt
-└── README.md
-```
-
----
-
-## Testing
-
-Use `test_bid_logic.py` to validate:
-
-* Bid parsing
-* Hand ranking
-* Input formatting
-
-Run with:
+Then launch the Streamlit UI:
 
 ```bash
-python -m unittest test_bid_logic.py
+streamlit run app.py
 ```
 
----
+Or open the app directly if hosted: (Replace this with your public Streamlit share link)
 
-## Optional Enhancements
-
-* Add metadata per user (initials, session tag)
-* Visualize synced results via charts
-* Auto-sync `synced_results/` to Google Drive or GitHub Pages
+[Launch the app](https://share.streamlit.io/your-username/liars-poker-helper-bot/main/app.py)
 
 ---
 
-## Created By
+## Created by
 
-Shlok Banshal — Summer 2025
-
-Inspired by game theory, poker modeling, and AI-backed decision support tools.
+Shlok Banshal – Summer 2025
