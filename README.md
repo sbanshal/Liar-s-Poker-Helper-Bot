@@ -59,7 +59,6 @@ Hand evaluation covers all standard hand types: high card, pair, two pair, three
 - All 5-card combinations are generated using combinatorics from the unknown portion of the deck.
 - A fixed number of pool trials (default: 1000) are sampled to simulate different realistic distributions of unknown cards.
 - The simulator does not count stronger hands when validating a weaker bid — exact-match logic is enforced.
-- Estimated standard error of probability is approximately 1.6% with 1000 trials.
 
 ---
 
@@ -151,7 +150,7 @@ Then add:
 
 ## Server Endpoints (Flask @ Render)
 
-Deployed at: [https://liars-poker-uploader.onrender.com](https://liars-poker-uploader.onrender.com)
+Deployed at: [https://liars-poker-uploader.onrender.com/files](https://liars-poker-uploader.onrender.com/files)
 
 | Route               | Method | Description                         |
 | ------------------- | ------ | ----------------------------------- |
@@ -181,10 +180,8 @@ python3 -m streamlit run app.py
 
 ## Created By
 
-Built and iteratively refined by Shlok Banshal, Summer 2025.
-
 This project is intended for use in educational tournament settings, simulations, and player testing for Liar's Poker adapted formats.
 
 Feel free to fork or submit contributions via pull request.
 
-© Shlok Banshal. All rights reserved.
+© 2025 Shlok Banshal. All rights reserved.
