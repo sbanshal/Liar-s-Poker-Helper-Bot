@@ -125,8 +125,8 @@ Server is hosted on Render at:
 
 Two supplemental documents are included in this repo:
 
-* **Liar's Poker – Bid Interpretation Guide.pdf** – rules for interpreting each hand type and suit-based bid
-* **Liar's Poker Handbook and Bid Progressions.pdf** – complete hand ranking hierarchy and strategic guidelines
+- [Liar's Poker – Bid Interpretation Guide.pdf](https://github.com/sbanshal/Liar-s-Poker-Helper-Bot/raw/main/Liar's%20Poker%20–%20Bid%20Interpretation%20Guide.pdf) – rules for interpreting each hand type and suit-based bid
+- [Liar's Poker Handbook and Bid Progressions.pdf](https://github.com/sbanshal/Liar-s-Poker-Helper-Bot/raw/main/Liar's%20Poker%20Handbook%20and%20Bid%20Progressions.pdf) – complete hand ranking hierarchy and strategic guidelines
 
 These are useful for players unfamiliar with the structure of valid bids or for instructors teaching the format.
 
