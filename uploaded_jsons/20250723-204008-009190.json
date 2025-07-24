@@ -1,0 +1,1853 @@
+{
+  "inputs": {
+    "hand": [
+      "2 of Hearts",
+      "3 of Hearts",
+      "4 of Hearts",
+      "5 of Hearts"
+    ],
+    "bid": {
+      "hand_type": "High Card",
+      "primary": null,
+      "secondary": null,
+      "suit": null,
+      "range_start": null,
+      "range_end": null
+    },
+    "total_cards": 20,
+    "threshold": 0.5
+  },
+  "outputs": {
+    "presence_probability": 1.0,
+    "stronger_hands": [
+      {
+        "type": "Flush",
+        "suit": "Hearts",
+        "high_card": "10",
+        "frequency": 0.317
+      },
+      {
+        "type": "Flush",
+        "suit": "Hearts",
+        "high_card": "8",
+        "frequency": 0.332
+      },
+      {
+        "type": "One Pair",
+        "primary_rank": "3",
+        "frequency": 0.726
+      },
+      {
+        "type": "One Pair",
+        "primary_rank": "5",
+        "frequency": 0.704
+      },
+      {
+        "type": "High Card",
+        "high_card": "10",
+        "frequency": 0.831
+      },
+      {
+        "type": "Straight Flush",
+        "suit": "Hearts",
+        "frequency": 0.314
+      },
+      {
+        "type": "High Card",
+        "high_card": "K",
+        "frequency": 0.821
+      },
+      {
+        "type": "Straight Flush",
+        "suit": "Hearts",
+        "frequency": 0.335
+      },
+      {
+        "type": "Flush",
+        "suit": "Hearts",
+        "high_card": "7",
+        "frequency": 0.328
+      },
+      {
+        "type": "High Card",
+        "high_card": "8",
+        "frequency": 0.793
+      },
+      {
+        "type": "High Card",
+        "high_card": "Q",
+        "frequency": 0.814
+      },
+      {
+        "type": "Straight",
+        "frequency": 0.808
+      },
+      {
+        "type": "One Pair",
+        "primary_rank": "10",
+        "frequency": 0.393
+      },
+      {
+        "type": "Flush",
+        "suit": "Hearts",
+        "high_card": "A",
+        "frequency": 0.307
+      },
+      {
+        "type": "High Card",
+        "high_card": "A",
+        "frequency": 0.808
+      },
+      {
+        "type": "One Pair",
+        "primary_rank": "8",
+        "frequency": 0.409
+      },
+      {
+        "type": "Three of a Kind",
+        "primary_rank": "3",
+        "frequency": 0.272
+      },
+      {
+        "type": "Straight",
+        "frequency": 0.847
+      },
+      {
+        "type": "High Card",
+        "high_card": "7",
+        "frequency": 0.806
+      },
+      {
+        "type": "One Pair",
+        "primary_rank": "A",
+        "frequency": 0.403
+      },
+      {
+        "type": "One Pair",
+        "primary_rank": "K",
+        "frequency": 0.427
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "5 and 3",
+        "frequency": 0.512
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "10 and 3",
+        "frequency": 0.27
+      },
+      {
+        "type": "Three of a Kind",
+        "primary_rank": "10",
+        "frequency": 0.105
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "8 and 3",
+        "frequency": 0.275
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "A and 3",
+        "frequency": 0.279
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "K and 3",
+        "frequency": 0.305
+      },
+      {
+        "type": "Four of a Kind",
+        "primary_rank": "3",
+        "frequency": 0.051
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "10 and 5",
+        "frequency": 0.276
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "8 and 5",
+        "frequency": 0.283
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "A and 5",
+        "frequency": 0.278
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "K and 5",
+        "frequency": 0.287
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "10 and 8",
+        "frequency": 0.152
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "A and 10",
+        "frequency": 0.139
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "K and 10",
+        "frequency": 0.162
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "A and 8",
+        "frequency": 0.141
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "K and 8",
+        "frequency": 0.165
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "A and K",
+        "frequency": 0.146
+      },
+      {
+        "type": "Straight Flush",
+        "suit": "Hearts",
+        "frequency": 0.098
+      },
+      {
+        "type": "Straight",
+        "frequency": 0.676
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "3 over 5",
+        "frequency": 0.185
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "3 over 10",
+        "frequency": 0.097
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "10 over 3",
+        "frequency": 0.068
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "3 over 8",
+        "frequency": 0.086
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "3 over A",
+        "frequency": 0.109
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "3 over K",
+        "frequency": 0.106
+      },
+      {
+        "type": "Straight Flush",
+        "suit": "Hearts",
+        "frequency": 0.029
+      },
+      {
+        "type": "Straight",
+        "frequency": 0.516
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "10 over 5",
+        "frequency": 0.072
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "10 over 8",
+        "frequency": 0.036
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "10 over A",
+        "frequency": 0.037
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "10 over K",
+        "frequency": 0.038
+      },
+      {
+        "type": "One Pair",
+        "primary_rank": "4",
+        "frequency": 0.723
+      },
+      {
+        "type": "Flush",
+        "suit": "Hearts",
+        "high_card": "Q",
+        "frequency": 0.342
+      },
+      {
+        "type": "One Pair",
+        "primary_rank": "2",
+        "frequency": 0.7
+      },
+      {
+        "type": "Flush",
+        "suit": "Hearts",
+        "high_card": "J",
+        "frequency": 0.344
+      },
+      {
+        "type": "High Card",
+        "high_card": "9",
+        "frequency": 0.812
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "4 and 3",
+        "frequency": 0.514
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "3 and 2",
+        "frequency": 0.5
+      },
+      {
+        "type": "High Card",
+        "high_card": "J",
+        "frequency": 0.811
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "4 and 2",
+        "frequency": 0.499
+      },
+      {
+        "type": "One Pair",
+        "primary_rank": "Q",
+        "frequency": 0.393
+      },
+      {
+        "type": "Three of a Kind",
+        "primary_rank": "2",
+        "frequency": 0.254
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "5 and 2",
+        "frequency": 0.489
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "Q and 3",
+        "frequency": 0.269
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "2 over 3",
+        "frequency": 0.179
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "3 over 2",
+        "frequency": 0.172
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "Q and 2",
+        "frequency": 0.257
+      },
+      {
+        "type": "Three of a Kind",
+        "primary_rank": "Q",
+        "frequency": 0.102
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "5 and 4",
+        "frequency": 0.503
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "Q and 4",
+        "frequency": 0.272
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "2 over 4",
+        "frequency": 0.176
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "Q and 5",
+        "frequency": 0.244
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "2 over 5",
+        "frequency": 0.176
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "Q over 2",
+        "frequency": 0.064
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "2 over Q",
+        "frequency": 0.085
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "3 over 4",
+        "frequency": 0.188
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "Q over 3",
+        "frequency": 0.067
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "3 over Q",
+        "frequency": 0.093
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "Q over 4",
+        "frequency": 0.067
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "Q over 5",
+        "frequency": 0.06
+      },
+      {
+        "type": "Flush",
+        "suit": "Clubs",
+        "high_card": "K",
+        "frequency": 0.168
+      },
+      {
+        "type": "Flush",
+        "suit": "Diamonds",
+        "high_card": "A",
+        "frequency": 0.182
+      },
+      {
+        "type": "Flush",
+        "suit": "Diamonds",
+        "high_card": "Q",
+        "frequency": 0.12
+      },
+      {
+        "type": "Straight",
+        "frequency": 0.319
+      },
+      {
+        "type": "Straight",
+        "frequency": 0.336
+      },
+      {
+        "type": "Straight",
+        "frequency": 0.345
+      },
+      {
+        "type": "Flush",
+        "suit": "Hearts",
+        "high_card": "K",
+        "frequency": 0.335
+      },
+      {
+        "type": "One Pair",
+        "primary_rank": "J",
+        "frequency": 0.422
+      },
+      {
+        "type": "One Pair",
+        "primary_rank": "7",
+        "frequency": 0.398
+      },
+      {
+        "type": "One Pair",
+        "primary_rank": "6",
+        "frequency": 0.42
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "J and 3",
+        "frequency": 0.298
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "7 and 3",
+        "frequency": 0.278
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "6 and 3",
+        "frequency": 0.297
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "8 and 4",
+        "frequency": 0.293
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "A and 4",
+        "frequency": 0.282
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "J and 4",
+        "frequency": 0.28
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "7 and 4",
+        "frequency": 0.282
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "6 and 4",
+        "frequency": 0.305
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "J and 5",
+        "frequency": 0.282
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "7 and 5",
+        "frequency": 0.278
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "6 and 5",
+        "frequency": 0.277
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "J and 8",
+        "frequency": 0.168
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "8 and 7",
+        "frequency": 0.145
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "8 and 6",
+        "frequency": 0.166
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "A and J",
+        "frequency": 0.166
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "A and 7",
+        "frequency": 0.162
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "A and 6",
+        "frequency": 0.147
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "J and 7",
+        "frequency": 0.144
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "J and 6",
+        "frequency": 0.162
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "7 and 6",
+        "frequency": 0.149
+      },
+      {
+        "type": "Flush",
+        "suit": "Spades",
+        "high_card": "A",
+        "frequency": 0.191
+      },
+      {
+        "type": "Flush",
+        "suit": "Diamonds",
+        "high_card": "J",
+        "frequency": 0.091
+      },
+      {
+        "type": "One Pair",
+        "primary_rank": "9",
+        "frequency": 0.408
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "10 and 2",
+        "frequency": 0.267
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "8 and 2",
+        "frequency": 0.266
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "K and 2",
+        "frequency": 0.291
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "9 and 2",
+        "frequency": 0.29
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "7 and 2",
+        "frequency": 0.267
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "Q and 10",
+        "frequency": 0.142
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "10 over 2",
+        "frequency": 0.066
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "10 and 9",
+        "frequency": 0.136
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "10 and 7",
+        "frequency": 0.128
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "Q and 8",
+        "frequency": 0.148
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "K and Q",
+        "frequency": 0.151
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "Q and 9",
+        "frequency": 0.155
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "Q and 7",
+        "frequency": 0.144
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "9 and 8",
+        "frequency": 0.137
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "K and 9",
+        "frequency": 0.164
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "K and 7",
+        "frequency": 0.144
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "9 and 7",
+        "frequency": 0.154
+      },
+      {
+        "type": "Straight",
+        "frequency": 0.41
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "Q over 10",
+        "frequency": 0.031
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "10 over Q",
+        "frequency": 0.029
+      },
+      {
+        "type": "Straight",
+        "frequency": 0.326
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "10 over 9",
+        "frequency": 0.037
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "10 over 7",
+        "frequency": 0.035
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "Q over 8",
+        "frequency": 0.03
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "Q over K",
+        "frequency": 0.035
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "Q over 9",
+        "frequency": 0.044
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "Q over 7",
+        "frequency": 0.034
+      },
+      {
+        "type": "Flush",
+        "suit": "Clubs",
+        "high_card": "Q",
+        "frequency": 0.128
+      },
+      {
+        "type": "Flush",
+        "suit": "Hearts",
+        "high_card": "9",
+        "frequency": 0.336
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "A and 2",
+        "frequency": 0.264
+      },
+      {
+        "type": "Three of a Kind",
+        "primary_rank": "K",
+        "frequency": 0.107
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "2 over A",
+        "frequency": 0.093
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "2 over 10",
+        "frequency": 0.092
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "2 over K",
+        "frequency": 0.101
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "K over 2",
+        "frequency": 0.077
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "K over 3",
+        "frequency": 0.074
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "K over 5",
+        "frequency": 0.066
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "K over A",
+        "frequency": 0.03
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "K over 10",
+        "frequency": 0.034
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "9 and 3",
+        "frequency": 0.285
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "9 and 4",
+        "frequency": 0.281
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "K and 4",
+        "frequency": 0.291
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "10 and 4",
+        "frequency": 0.262
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "A and 9",
+        "frequency": 0.147
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "K over 4",
+        "frequency": 0.073
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "K over 9",
+        "frequency": 0.035
+      },
+      {
+        "type": "Flush",
+        "suit": "Spades",
+        "high_card": "K",
+        "frequency": 0.184
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "K over 8",
+        "frequency": 0.035
+      },
+      {
+        "type": "Flush",
+        "suit": "Diamonds",
+        "high_card": "K",
+        "frequency": 0.172
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "6 and 2",
+        "frequency": 0.289
+      },
+      {
+        "type": "Four of a Kind",
+        "primary_rank": "2",
+        "frequency": 0.033
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "2 over 7",
+        "frequency": 0.087
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "Q and 6",
+        "frequency": 0.144
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "2 over 6",
+        "frequency": 0.09
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "9 and 6",
+        "frequency": 0.157
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "2 over 9",
+        "frequency": 0.093
+      },
+      {
+        "type": "Flush",
+        "suit": "Clubs",
+        "high_card": "9",
+        "frequency": 0.05
+      },
+      {
+        "type": "Flush",
+        "suit": "Clubs",
+        "high_card": "10",
+        "frequency": 0.081
+      },
+      {
+        "type": "Flush",
+        "suit": "Clubs",
+        "high_card": "8",
+        "frequency": 0.031
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "K and 6",
+        "frequency": 0.168
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "10 and 6",
+        "frequency": 0.158
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "Q and J",
+        "frequency": 0.145
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "K and J",
+        "frequency": 0.164
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "J and 10",
+        "frequency": 0.143
+      },
+      {
+        "type": "Straight",
+        "frequency": 0.306
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "Q over 6",
+        "frequency": 0.031
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "Q over J",
+        "frequency": 0.036
+      },
+      {
+        "type": "Three of a Kind",
+        "primary_rank": "4",
+        "frequency": 0.251
+      },
+      {
+        "type": "Three of a Kind",
+        "primary_rank": "6",
+        "frequency": 0.102
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "J and 2",
+        "frequency": 0.278
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "4 over 2",
+        "frequency": 0.167
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "6 over 2",
+        "frequency": 0.071
+      },
+      {
+        "type": "Four of a Kind",
+        "primary_rank": "6",
+        "frequency": 0.014
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "A and Q",
+        "frequency": 0.145
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "4 over 3",
+        "frequency": 0.174
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "6 over 3",
+        "frequency": 0.075
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "6 over 4",
+        "frequency": 0.068
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "4 over 6",
+        "frequency": 0.112
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "4 over Q",
+        "frequency": 0.094
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "4 over A",
+        "frequency": 0.081
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "4 over J",
+        "frequency": 0.1
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "6 over Q",
+        "frequency": 0.029
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "6 over A",
+        "frequency": 0.032
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "6 over J",
+        "frequency": 0.032
+      },
+      {
+        "type": "Flush",
+        "suit": "Spades",
+        "high_card": "7",
+        "frequency": 0.009
+      },
+      {
+        "type": "Three of a Kind",
+        "primary_rank": "9",
+        "frequency": 0.102
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "J and 9",
+        "frequency": 0.153
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "9 over 2",
+        "frequency": 0.07
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "3 over J",
+        "frequency": 0.104
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "3 over 9",
+        "frequency": 0.094
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "9 over 3",
+        "frequency": 0.065
+      },
+      {
+        "type": "Flush",
+        "suit": "Spades",
+        "high_card": "J",
+        "frequency": 0.107
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "9 over J",
+        "frequency": 0.033
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "9 over Q",
+        "frequency": 0.044
+      },
+      {
+        "type": "Three of a Kind",
+        "primary_rank": "J",
+        "frequency": 0.086
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "2 over J",
+        "frequency": 0.087
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "J over 2",
+        "frequency": 0.057
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "J over 3",
+        "frequency": 0.061
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "J over K",
+        "frequency": 0.036
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "K over J",
+        "frequency": 0.039
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "K over 7",
+        "frequency": 0.03
+      },
+      {
+        "type": "Flush",
+        "suit": "Diamonds",
+        "high_card": "10",
+        "frequency": 0.073
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "J over 7",
+        "frequency": 0.021
+      },
+      {
+        "type": "Three of a Kind",
+        "primary_rank": "5",
+        "frequency": 0.228
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "5 over 3",
+        "frequency": 0.166
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "5 over 4",
+        "frequency": 0.157
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "5 over K",
+        "frequency": 0.086
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "5 over 10",
+        "frequency": 0.079
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "5 over Q",
+        "frequency": 0.072
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "5 over 8",
+        "frequency": 0.087
+      },
+      {
+        "type": "Flush",
+        "suit": "Diamonds",
+        "high_card": "9",
+        "frequency": 0.038
+      },
+      {
+        "type": "Two Pair",
+        "primary_rank": "9 and 5",
+        "frequency": 0.268
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "3 over 6",
+        "frequency": 0.098
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "4 over 5",
+        "frequency": 0.174
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "4 over 9",
+        "frequency": 0.079
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "9 over 4",
+        "frequency": 0.07
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "9 over 5",
+        "frequency": 0.063
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "9 over A",
+        "frequency": 0.037
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "9 over 6",
+        "frequency": 0.025
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "K over Q",
+        "frequency": 0.031
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "K over 6",
+        "frequency": 0.041
+      },
+      {
+        "type": "Flush",
+        "suit": "Spades",
+        "high_card": "Q",
+        "frequency": 0.125
+      },
+      {
+        "type": "Four of a Kind",
+        "primary_rank": "K",
+        "frequency": 0.011
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "6 over K",
+        "frequency": 0.035
+      },
+      {
+        "type": "Three of a Kind",
+        "primary_rank": "A",
+        "frequency": 0.098
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "A over 2",
+        "frequency": 0.059
+      },
+      {
+        "type": "Four of a Kind",
+        "primary_rank": "A",
+        "frequency": 0.013
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "A over 3",
+        "frequency": 0.061
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "A over 5",
+        "frequency": 0.065
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "A over K",
+        "frequency": 0.026
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "A over 6",
+        "frequency": 0.026
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "A over J",
+        "frequency": 0.039
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "5 over 2",
+        "frequency": 0.15
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "5 over J",
+        "frequency": 0.092
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "5 over 9",
+        "frequency": 0.085
+      },
+      {
+        "type": "Three of a Kind",
+        "primary_rank": "7",
+        "frequency": 0.095
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "7 over 4",
+        "frequency": 0.07
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "A over 4",
+        "frequency": 0.063
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "10 over 4",
+        "frequency": 0.066
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "7 over J",
+        "frequency": 0.028
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "7 over A",
+        "frequency": 0.029
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "A over 7",
+        "frequency": 0.038
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "7 over 10",
+        "frequency": 0.025
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "7 over 8",
+        "frequency": 0.031
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "10 over J",
+        "frequency": 0.032
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "A over 10",
+        "frequency": 0.035
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "A over 8",
+        "frequency": 0.038
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "5 over 7",
+        "frequency": 0.091
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "5 over 6",
+        "frequency": 0.071
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "9 over 7",
+        "frequency": 0.039
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "9 over 10",
+        "frequency": 0.029
+      },
+      {
+        "type": "Three of a Kind",
+        "primary_rank": "8",
+        "frequency": 0.089
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "8 over 3",
+        "frequency": 0.057
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "8 over 4",
+        "frequency": 0.066
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "8 over 5",
+        "frequency": 0.054
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "5 over A",
+        "frequency": 0.083
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "8 over A",
+        "frequency": 0.024
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "8 over 7",
+        "frequency": 0.027
+      },
+      {
+        "type": "Flush",
+        "suit": "Clubs",
+        "high_card": "J",
+        "frequency": 0.095
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "3 over 7",
+        "frequency": 0.093
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "4 over K",
+        "frequency": 0.093
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "10 over 6",
+        "frequency": 0.043
+      },
+      {
+        "type": "Flush",
+        "suit": "Clubs",
+        "high_card": "A",
+        "frequency": 0.21
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "2 over 8",
+        "frequency": 0.1
+      },
+      {
+        "type": "Flush",
+        "suit": "Spades",
+        "high_card": "9",
+        "frequency": 0.035
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "9 over 8",
+        "frequency": 0.034
+      },
+      {
+        "type": "Four of a Kind",
+        "primary_rank": "10",
+        "frequency": 0.015
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "8 over 10",
+        "frequency": 0.035
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "8 over Q",
+        "frequency": 0.034
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "8 over K",
+        "frequency": 0.033
+      },
+      {
+        "type": "Flush",
+        "suit": "Spades",
+        "high_card": "10",
+        "frequency": 0.081
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "Q over A",
+        "frequency": 0.032
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "6 over 7",
+        "frequency": 0.031
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "6 over 5",
+        "frequency": 0.058
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "6 over 10",
+        "frequency": 0.039
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "6 over 8",
+        "frequency": 0.038
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "J over 5",
+        "frequency": 0.053
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "J over 10",
+        "frequency": 0.026
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "J over 8",
+        "frequency": 0.024
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "4 over 10",
+        "frequency": 0.081
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "4 over 8",
+        "frequency": 0.083
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "4 over 7",
+        "frequency": 0.093
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "A over Q",
+        "frequency": 0.033
+      },
+      {
+        "type": "Four of a Kind",
+        "primary_rank": "5",
+        "frequency": 0.036
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "9 over K",
+        "frequency": 0.039
+      },
+      {
+        "type": "Flush",
+        "suit": "Spades",
+        "high_card": "8",
+        "frequency": 0.022
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "J over 4",
+        "frequency": 0.054
+      },
+      {
+        "type": "Flush",
+        "suit": "Diamonds",
+        "high_card": "7",
+        "frequency": 0.005
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "7 over 5",
+        "frequency": 0.066
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "7 over 9",
+        "frequency": 0.03
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "7 over Q",
+        "frequency": 0.034
+      },
+      {
+        "type": "Flush",
+        "suit": "Clubs",
+        "high_card": "7",
+        "frequency": 0.017
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "A over 9",
+        "frequency": 0.038
+      },
+      {
+        "type": "Four of a Kind",
+        "primary_rank": "Q",
+        "frequency": 0.007
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "7 over 3",
+        "frequency": 0.064
+      },
+      {
+        "type": "Four of a Kind",
+        "primary_rank": "J",
+        "frequency": 0.005
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "7 over K",
+        "frequency": 0.025
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "J over 9",
+        "frequency": 0.03
+      },
+      {
+        "type": "Four of a Kind",
+        "primary_rank": "7",
+        "frequency": 0.008
+      },
+      {
+        "type": "Straight Flush",
+        "suit": "Diamonds",
+        "frequency": 0.005
+      },
+      {
+        "type": "Straight Flush",
+        "suit": "Diamonds",
+        "frequency": 0.005
+      },
+      {
+        "type": "Straight Flush",
+        "suit": "Clubs",
+        "frequency": 0.005
+      },
+      {
+        "type": "Straight Flush",
+        "suit": "Clubs",
+        "frequency": 0.005
+      },
+      {
+        "type": "Straight Flush",
+        "suit": "Clubs",
+        "frequency": 0.004
+      },
+      {
+        "type": "Straight Flush",
+        "suit": "Diamonds",
+        "frequency": 0.002
+      },
+      {
+        "type": "Straight Flush",
+        "suit": "Diamonds",
+        "frequency": 0.003
+      },
+      {
+        "type": "Four of a Kind",
+        "primary_rank": "9",
+        "frequency": 0.009
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "8 over J",
+        "frequency": 0.03
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "8 over 9",
+        "frequency": 0.025
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "8 over 6",
+        "frequency": 0.032
+      },
+      {
+        "type": "Flush",
+        "suit": "Diamonds",
+        "high_card": "8",
+        "frequency": 0.018
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "7 over 2",
+        "frequency": 0.054
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "8 over 2",
+        "frequency": 0.048
+      },
+      {
+        "type": "Four of a Kind",
+        "primary_rank": "4",
+        "frequency": 0.028
+      },
+      {
+        "type": "Straight Flush",
+        "suit": "Spades",
+        "frequency": 0.003
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "J over Q",
+        "frequency": 0.027
+      },
+      {
+        "type": "Straight Flush",
+        "suit": "Clubs",
+        "frequency": 0.004
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "7 over 6",
+        "frequency": 0.03
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "J over 6",
+        "frequency": 0.027
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "J over A",
+        "frequency": 0.034
+      },
+      {
+        "type": "Full House",
+        "primary_rank": "6 over 9",
+        "frequency": 0.03
+      },
+      {
+        "type": "Straight Flush",
+        "suit": "Clubs",
+        "frequency": 0.003
+      },
+      {
+        "type": "Four of a Kind",
+        "primary_rank": "8",
+        "frequency": 0.01
+      },
+      {
+        "type": "Straight Flush",
+        "suit": "Diamonds",
+        "frequency": 0.002
+      },
+      {
+        "type": "Straight Flush",
+        "suit": "Spades",
+        "frequency": 0.005
+      },
+      {
+        "type": "Straight Flush",
+        "suit": "Hearts",
+        "frequency": 0.01
+      },
+      {
+        "type": "Straight Flush",
+        "suit": "Clubs",
+        "frequency": 0.001
+      },
+      {
+        "type": "Straight Flush",
+        "suit": "Clubs",
+        "frequency": 0.002
+      },
+      {
+        "type": "Straight Flush",
+        "suit": "Spades",
+        "frequency": 0.005
+      },
+      {
+        "type": "Straight Flush",
+        "suit": "Spades",
+        "frequency": 0.001
+      },
+      {
+        "type": "Straight Flush",
+        "suit": "Hearts",
+        "frequency": 0.003
+      },
+      {
+        "type": "Straight Flush",
+        "suit": "Diamonds",
+        "frequency": 0.003
+      },
+      {
+        "type": "Straight Flush",
+        "suit": "Spades",
+        "frequency": 0.003
+      },
+      {
+        "type": "Straight Flush",
+        "suit": "Spades",
+        "frequency": 0.002
+      },
+      {
+        "type": "Straight Flush",
+        "suit": "Hearts",
+        "frequency": 0.003
+      },
+      {
+        "type": "Straight Flush",
+        "suit": "Diamonds",
+        "frequency": 0.005
+      },
+      {
+        "type": "Straight Flush",
+        "suit": "Diamonds",
+        "frequency": 0.004
+      },
+      {
+        "type": "Straight Flush",
+        "suit": "Diamonds",
+        "frequency": 0.003
+      },
+      {
+        "type": "Straight Flush",
+        "suit": "Spades",
+        "frequency": 0.002
+      },
+      {
+        "type": "Straight Flush",
+        "suit": "Spades",
+        "frequency": 0.002
+      },
+      {
+        "type": "Straight Flush",
+        "suit": "Spades",
+        "frequency": 0.001
+      },
+      {
+        "type": "Straight Flush",
+        "suit": "Clubs",
+        "frequency": 0.003
+      },
+      {
+        "type": "Straight Flush",
+        "suit": "Hearts",
+        "frequency": 0.001
+      },
+      {
+        "type": "Straight Flush",
+        "suit": "Spades",
+        "frequency": 0.001
+      },
+      {
+        "type": "Straight Flush",
+        "suit": "Clubs",
+        "frequency": 0.002
+      },
+      {
+        "type": "Straight Flush",
+        "suit": "Hearts",
+        "frequency": 0.001
+      },
+      {
+        "type": "Straight Flush",
+        "suit": "Clubs",
+        "frequency": 0.002
+      }
+    ],
+    "suggestion": "Raise"
+  }
+}
