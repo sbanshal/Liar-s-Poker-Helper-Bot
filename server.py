@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 import json
 import os
 from datetime import datetime
@@ -20,6 +20,15 @@ def upload():
         return jsonify({"status": "success", "file": file_path}), 200
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 400
+
+@app.route("/files", methods=["GET"])
+def list_uploaded_files():
+    files = os.listdir(SAVE_DIR)
+    return jsonify(sorted(files))
+
+@app.route("/files/<filename>", methods=["GET"])
+def download_file(filename):
+    return send_from_directory(SAVE_DIR, filename, as_attachment=True)
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5050))
