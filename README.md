@@ -1,67 +1,158 @@
-# Liar's Poker – Bid Helper (Collective Hold’em Variant)
+# Liar's Poker Helper Bot
 
-This web-based simulation tool helps players of the **Liar’s Poker Collective Hold’em Variant** evaluate the plausibility of specific 5-card poker hand bids.
-
-[Launch the app here](https://liar-s-poker-apper-bot-bgvknhv8kzniydeygtqr6j.streamlit.app/)
+This is an intelligent simulation and strategy tool designed for evaluating bids in the game of Liar’s Poker. It uses Monte Carlo simulations to suggest whether to call or raise based on your hand and public game conditions.
 
 ---
 
-## What It Does
+## Features
 
-- You input:
-  - Your hand (e.g., `4 of Hearts`, `10 of Spades`)
-  - The total number of cards in play (e.g., 20)
-  - The most recent bid (e.g., `Three of a Kind, Queens`)
-  - A confidence threshold (e.g., 0.5)
-- The app simulates thousands of possible pools and tells you:
-  - Whether the bid is likely valid
-  - What stronger hands are probable
-  - What your best next move might be
+* Streamlit interface for bid simulation and decision making
+* Monte Carlo simulation of millions of hands for statistical backing
+* Automatic decision output based on probability threshold
+* Local and remote saving of results (as `.json`)
+* Centralized Flask server hosted on Render for collecting submissions
+* Daily auto-downloaded results using cron
+* Auto-extracted ZIPs saved to `synced_results/`
 
 ---
 
-## Game Handbook and Guides
+## How It Works
 
-This project uses the “Collective Hold’em” ruleset of Liar’s Poker.
+1. User enters hand and bid into the Streamlit UI
+2. Simulation is run using known and unknown cards
+3. Results are formatted into structured JSON, including:
 
-- [Game Handbook and Bid Progressions (PDF)](./Liar's%20Poker%20Handbook%20and%20Bid%20Progressions.pdf)
-- [Bid Interpretation Guide (PDF)](./Liar's%20Poker%20–%20Bid%20Interpretation%20Guide.pdf)
+   * Hand input
+   * Total players
+   * Stronger hands above threshold (only these are saved)
+4. Saved locally to `data/output_<timestamp>.json`
+5. Uploaded to Render via a REST POST to `/upload`
+6. Filename and download link shown in the UI
+7. On the server:
 
-Key bidding clarifications:
-- Bids must be fulfilled exactly — stronger hands don’t count
-- For example, a **Full House** doesn’t satisfy a **Three of a Kind** bid
-- Flushes are defined by high card, not suit hierarchy
-- Royal Flush is treated as its own rank above Straight Flush
+   * JSONs are saved in `/uploaded_jsons/`
+   * Public `/files.zip` endpoint is updated
 
 ---
 
-## How to Run Locally
+## Key Scripts
+
+### `app.py`
+
+* Streamlit interface for bid selection and simulation
+* Cleans and standardizes output format
+* Uniform UI style for feedback
+
+### `download_all.py`
+
+* Downloads `files.zip` from the server
+* Extracts into: `synced_results/<timestamp>/`
+* Deletes ZIP after extraction
+* Can be run manually or scheduled via cron
+
+---
+
+## Cron Automation
+
+The script `download_all.py` is automatically run every day at 8:00 AM on macOS via `cron`.
+
+Make sure your machine is awake and not asleep if you want the job to fire.
+
+To edit the schedule:
 
 ```bash
-pip install -r requirements.txt
-streamlit run app.py
+crontab -e
+```
+
+Sample entry:
+
+```bash
+0 8 * * * /Library/Frameworks/Python.framework/Versions/3.9/bin/python3 /Users/yourname/path/to/download_all.py
 ```
 
 ---
 
-## Deployment
+## Server Endpoints (Flask)
 
-This app is deployed publicly via [Streamlit Cloud](https://streamlit.io/cloud).  
-It auto-updates with every push to the `main` branch.
+* `POST /upload` – accepts JSON upload and saves to disk
+* `GET /files` – returns list of all `.json` files
+* `GET /files/<filename>` – returns the raw `.json` file
+* `GET /files.zip` – returns all `.json` files in a single archive
+* `GET /stats` (optional) – returns server-side summary stats
 
----
-
-## Contributing
-
-Pull requests and feature suggestions welcome!  
-This project was built to test probability assumptions in advanced bluff-based gameplay — but can be extended into teaching tools, AI bidding bots, or player analytics.
+Hosted on: [https://liars-poker-uploader.onrender.com](https://liars-poker-uploader.onrender.com)
 
 ---
 
-## Contact
+## Data Output Format
 
-Made by [Shlok Banshal](mailto:shlok.banshal@duke.edu)
+Each uploaded `.json` includes:
+
+```json
+{
+  "inputs": {
+    "hand": [...],
+    "bid": ..., 
+    "players": ...
+  },
+  "outputs": {
+    "presence_probability": 0.72,
+    "suggestion": "raise",
+    "stronger_hands": [
+      { "type": "Straight", "frequency": 0.12, ... },
+      ...
+    ]
+  }
+}
+```
+
+Note: Only `stronger_hands` above the threshold are included.
 
 ---
 
-© 2025 Shlok Banshal. All rights reserved.
+## Project Structure
+
+```
+├── app.py                 # Streamlit UI
+├── download_all.py        # Daily pull of all JSON results
+├── server.py              # Flask collector backend
+├── synced_results/        # Extracted results per day
+├── uploaded_jsons/        # Stored JSONs (on server only)
+├── utils.py               # Formatter for ML output
+├── simulator.py           # Core simulation logic
+├── bid.py, card.py        # Bid/card parsing logic
+├── requirements.txt
+└── README.md
+```
+
+---
+
+## Testing
+
+Use `test_bid_logic.py` to validate:
+
+* Bid parsing
+* Hand ranking
+* Input formatting
+
+Run with:
+
+```bash
+python -m unittest test_bid_logic.py
+```
+
+---
+
+## Optional Enhancements
+
+* Add metadata per user (initials, session tag)
+* Visualize synced results via charts
+* Auto-sync `synced_results/` to Google Drive or GitHub Pages
+
+---
+
+## Created By
+
+Shlok Banshal — Summer 2025
+
+Inspired by game theory, poker modeling, and AI-backed decision support tools.
