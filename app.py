@@ -259,7 +259,6 @@ if st.button("Simulate and Decide"):
 
                 save_path = save_json(ml_output)
                 st.caption(f"Saved to {save_path}")
-                st.success("Filtered results saved to: `data/simulation_result.json`")
 
                 # --- SEND TO CENTRAL FLASK COLLECTOR ---
                 import requests
@@ -272,7 +271,6 @@ if st.button("Simulate and Decide"):
                         )
                         if response.ok:
                             uploaded = response.json()
-                            st.success("Simulation uploaded to central JSON bank.")
                             st.caption(f"Saved remotely as: `{uploaded.get('file')}`")
                             
                             filename = uploaded.get("file", "").split("/")[-1]
