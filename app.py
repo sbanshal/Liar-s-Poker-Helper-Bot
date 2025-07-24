@@ -31,6 +31,24 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+st.markdown(
+    """
+    <style>
+    .uniform-text {
+        font-family: 'EB Garamond', serif;
+        font-size: 15px;
+        color: #DDDDDD;
+        margin-bottom: 10px;
+    }
+    .uniform-text a {
+        color: #77C0FF;
+        text-decoration: none;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 st.set_page_config(page_title="Liar's Poker Bid Helper", layout="wide")
 
 # Bid Section
@@ -258,7 +276,6 @@ if st.button("Simulate and Decide"):
                 )
 
                 save_path = save_json(ml_output)
-                st.caption(f"Saved to {save_path}")
 
                 # --- SEND TO CENTRAL FLASK COLLECTOR ---
                 import requests
@@ -271,20 +288,19 @@ if st.button("Simulate and Decide"):
                         )
                         if response.ok:
                             uploaded = response.json()
-                            st.caption(f"Saved remotely as: `{uploaded.get('file')}`")
-                            
                             filename = uploaded.get("file", "").split("/")[-1]
                             url = f"https://liars-poker-uploader.onrender.com/files/{filename}"
-                            st.markdown(f"[View uploaded file]({url})")
+
+                            st.markdown(f"<div class='uniform-text'>✅ Saved remotely as: uploaded_jsons/{filename}</div>", unsafe_allow_html=True)
+                            st.markdown(f"<div class='uniform-text'>🔗 <a href='{url}' target='_blank'>View uploaded file</a></div>", unsafe_allow_html=True)
+                            st.markdown(f"<div class='uniform-text'>💾 Saved locally as: {save_path}</div>", unsafe_allow_html=True)
+                            st.markdown(f"<div class='uniform-text'>⏱️ Simulation completed in {elapsed:.2f} seconds</div>", unsafe_allow_html=True)
                         else:
                             st.warning(f"Upload failed: {response.status_code} — {response.text}")
                     else:
                         st.warning("Skipping upload: Simulation result is incomplete.")
                 except Exception as e:
                     st.warning(f"Could not upload result: {e}")
-
-
-        st.caption(f"Simulation completed in {elapsed:.2f} seconds")
 
     except Exception as e:
         st.error(f"Error during simulation: {e}")
