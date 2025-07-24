@@ -54,16 +54,19 @@ def format_simulation_for_ml(
     results: Dict[str, Any]
 ) -> Dict[str, Any]:
     def parse_hand_key(key: str) -> Dict[str, Any]:
-        parts = key.split(", ")
-        base = {"type": parts[0]}
-        for part in parts[1:]:
-            if part.startswith("High "):
-                base["high_card"] = part.replace("High ", "")
-            elif part in ["Hearts", "Spades", "Diamonds", "Clubs"]:
-                base["suit"] = part
-            elif part.endswith("s"):
-                base["primary_rank"] = part.replace("s", "")
-        return base
+        try:
+            parts = key.split(", ")
+            base = {"type": parts[0]}
+            for part in parts[1:]:
+                if part.startswith("High "):
+                    base["high_card"] = part.replace("High ", "")
+                elif part in ["Hearts", "Spades", "Diamonds", "Clubs"]:
+                    base["suit"] = part
+                elif part.endswith("s"):
+                    base["primary_rank"] = part.replace("s", "")
+            return base
+        except Exception as e:
+            return {"type": "Unknown", "raw": key}
 
     stronger_hands = []
     for label, count in results["matching_hands"].items():
