@@ -50,13 +50,3 @@ def download_all_as_zip():
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5050))
     app.run(host="0.0.0.0", port=port)
-
-@app.route("/files.zip", methods=["GET"])
-def download_all_as_zip():
-    zip_buffer = io.BytesIO()
-    with zipfile.ZipFile(zip_buffer, "w") as z:
-        for fname in os.listdir(SAVE_DIR):
-            if fname.endswith(".json") and not fname.startswith("."):
-                z.write(os.path.join(SAVE_DIR, fname), arcname=fname)
-    zip_buffer.seek(0)
-    return send_file(zip_buffer, mimetype="application/zip", as_attachment=True, download_name="uploaded_jsons.zip")
