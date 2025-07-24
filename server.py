@@ -25,7 +25,7 @@ def upload():
 
 @app.route("/files", methods=["GET"])
 def list_uploaded_files():
-    files = os.listdir(SAVE_DIR)
+    files = [f for f in os.listdir(SAVE_DIR) if f.endswith(".json")]
     return jsonify(sorted(files))
 
 @app.route("/files/<filename>", methods=["GET"])

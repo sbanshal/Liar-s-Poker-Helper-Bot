@@ -265,14 +265,26 @@ if st.button("Simulate and Decide"):
                 import requests
 
                 try:
-                    response = requests.post("https://liars-poker-uploader.onrender.com/upload", json=ml_output)
-                    
-                    if response.ok:
-                        st.success("Simulation uploaded to central JSON bank.")
+                    if "inputs" in ml_output and "outputs" in ml_output:
+                        response = requests.post(
+                            "https://liars-poker-uploader.onrender.com/upload",
+                            json=ml_output
+                        )
+                        if response.ok:
+                            uploaded = response.json()
+                            st.success("Simulation uploaded to central JSON bank.")
+                            st.caption(f"Saved remotely as: `{uploaded.get('file')}`")
+                            
+                            filename = uploaded.get("file", "").split("/")[-1]
+                            url = f"https://liars-poker-uploader.onrender.com/files/{filename}"
+                            st.markdown(f"[View uploaded file]({url})")
+                        else:
+                            st.warning(f"Upload failed: {response.status_code} — {response.text}")
                     else:
-                        st.warning(f"Upload failed: {response.status_code} — {response.text}")
+                        st.warning("Skipping upload: Simulation result is incomplete.")
                 except Exception as e:
                     st.warning(f"Could not upload result: {e}")
+
 
         st.caption(f"Simulation completed in {elapsed:.2f} seconds")
 
