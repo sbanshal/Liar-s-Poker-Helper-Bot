@@ -138,9 +138,9 @@ def render_game_settings():
     st.markdown("### Game Parameters")
     col1, col2 = st.columns(2)
     with col1:
-        total_cards = st.number_input("Total cards in play:", min_value=5, max_value=52, value=20, key="widget_total_cards"
+        total_cards = st.number_input("Total cards in play:", min_value=5, max_value=52, value=20, key="widget_total_cards")
     with col2:
-        thresh = st.slider("Probability Threshold", 0.0, 1.0, 0.50, 0.01, key="widget_probability_threshold"
+        thresh = st.slider("Probability Threshold", 0.0, 1.0, 0.50, 0.01, key="widget_probability_threshold")
 
     sample_override = 1000
 
