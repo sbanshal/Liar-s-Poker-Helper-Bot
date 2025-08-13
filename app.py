@@ -54,7 +54,7 @@ st.set_page_config(page_title="Liar's Poker Bid Helper", layout="wide")
 # Bid Section
 def render_bid_section():
     st.markdown("### Select the last bid you must respond to:")
-    hand_type = st.selectbox("Hand Type", HAND_TYPES)
+    hand_type = st.selectbox("Hand Type", HAND_TYPES, key="widget_hand_type")
 
     # Optional: show image
     hand_images = {
@@ -74,39 +74,39 @@ def render_bid_section():
     primary = secondary = suit = range_start = range_end = None
 
     if hand_type == "High Card":
-        primary = RANK_TO_VALUE[st.selectbox("High Card Rank", RANKS)]
+        primary = RANK_TO_VALUE[st.selectbox("High Card Rank", RANKS, key="widget_highcard_rank")]
     elif hand_type == "One Pair":
-        primary = RANK_TO_VALUE[st.selectbox("Rank of the Pair", RANKS)]
+        primary = RANK_TO_VALUE[st.selectbox("Rank of the Pair", RANKS, key="widget_pair_rank")]
     elif hand_type == "Two Pair":
-        primary = RANK_TO_VALUE[st.selectbox("First Pair Rank", RANKS)]
-        secondary = RANK_TO_VALUE[st.selectbox("Second Pair Rank", [r for r in RANKS if RANK_TO_VALUE[r] != primary])]
+        primary = RANK_TO_VALUE[st.selectbox("First Pair Rank", RANKS, key="widget_two_pair_first")]
+        secondary = RANK_TO_VALUE[st.selectbox("Second Pair Rank", [r for r in RANKS if RANK_TO_VALUE[r] != primary], key="widget_two_pair_second")]
     elif hand_type == "Three of a Kind":
-        primary = RANK_TO_VALUE[st.selectbox("Rank for Trips", RANKS)]
+        primary = RANK_TO_VALUE[st.selectbox("Rank for Trips", RANKS, key="widget_trips_rank")]
     elif hand_type == "Straight":
         options = ["A"] + RANKS[:9]
-        start = st.selectbox("Straight Start", options)
+        start = st.selectbox("Straight Start", options, key="widget_straightflush_start")
         range_start = RANK_TO_VALUE[start]
         range_end = 5 if start == "A" else range_start + 4
         if range_end > 14:
             range_end = 14
     elif hand_type == "Flush":
-        primary = RANK_TO_VALUE[st.selectbox("High Card", RANKS[4:])]
-        suit = st.selectbox("Suit", SUITS)
+        primary = RANK_TO_VALUE[st.selectbox("High Card", RANKS[4:], key="widget_flush_high")]
+        suit = st.selectbox("Suit", SUITS, key="widget_suit")
     elif hand_type == "Full House":
-        primary = RANK_TO_VALUE[st.selectbox("Trips Rank", RANKS)]
-        secondary = RANK_TO_VALUE[st.selectbox("Pair Rank", [r for r in RANKS if RANK_TO_VALUE[r] != primary])]
+        primary = RANK_TO_VALUE[st.selectbox("Trips Rank", RANKS, key="widget_fullhouse_trips")]
+        secondary = RANK_TO_VALUE[st.selectbox("Pair Rank", [r for r in RANKS if RANK_TO_VALUE[r] != primary], key="widget_fullhouse_pair")]
     elif hand_type == "Four of a Kind":
-        primary = RANK_TO_VALUE[st.selectbox("Quads Rank", RANKS)]
+        primary = RANK_TO_VALUE[st.selectbox("Quads Rank", RANKS, key="widget_quads_rank")]
     elif hand_type == "Straight Flush":
         options = ["A"] + RANKS[:8]
-        start = st.selectbox("Straight Start", options)
-        suit = st.selectbox("Suit", SUITS)
+        start = st.selectbox("Straight Start", options, key="widget_straightflush_start")
+        suit = st.selectbox("Suit", SUITS, key="widget_suit")
         range_start = RANK_TO_VALUE[start]
         range_end = 5 if start == "A" else range_start + 4
         if range_end > 14:
             range_end = 14
     elif hand_type == "Royal Flush":
-        suit = st.selectbox("Suit", SUITS)
+        suit = st.selectbox("Suit", SUITS, key="widget_suit")
 
     return hand_type, primary, secondary, suit, range_start, range_end
 
@@ -121,9 +121,9 @@ def render_card_input_section():
             st.markdown(f"<div style='font-weight:600; font-size:16px;'>Card {i+1}</div>", unsafe_allow_html=True)
             col1, col2 = st.columns(2)
             with col1:
-                rank = st.selectbox("Rank", RANKS, key=f"rank_{i}")
+                rank = st.selectbox("Rank", RANKS, key=f"widget_card_rank_{i}")
             with col2:
-                suit = st.selectbox("Suit", SUITS, key=f"suit_{i}")
+                suit = st.selectbox("Suit", SUITS, key=f"widget_card_suit_{i}")
             cards.append(f"{rank} of {suit}")
 
     if len(cards) != len(set(cards)):
@@ -138,9 +138,9 @@ def render_game_settings():
     st.markdown("### Game Parameters")
     col1, col2 = st.columns(2)
     with col1:
-        total_cards = st.number_input("Total cards in play:", min_value=5, max_value=52, value=20)
+        total_cards = st.number_input("Total cards in play:", min_value=5, max_value=52, value=20, key="widget_total_cards"
     with col2:
-        thresh = st.slider("Probability Threshold", 0.0, 1.0, 0.50, 0.01)
+        thresh = st.slider("Probability Threshold", 0.0, 1.0, 0.50, 0.01, key="widget_probability_threshold"
 
     sample_override = 1000
 
@@ -149,7 +149,6 @@ def render_game_settings():
 # Main App
 st.title("Liar's Poker – Bid Helper")
 st.caption("Use this tool to decide whether to challenge or raise the last bid in play.")
-st.write("")
 
 with st.expander("Game Instructions (click to expand)", expanded=False):
     st.markdown("""
