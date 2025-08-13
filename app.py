@@ -149,6 +149,7 @@ def render_game_settings():
 # Main App
 st.title("Liar's Poker – Bid Helper")
 st.caption("Use this tool to decide whether to challenge or raise the last bid in play.")
+st.write("")
 
 with st.expander("Game Instructions (click to expand)", expanded=False):
     st.markdown("""
