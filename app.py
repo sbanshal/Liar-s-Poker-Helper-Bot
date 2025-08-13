@@ -150,13 +150,6 @@ def render_game_settings():
 st.title("Liar's Poker – Bid Helper")
 st.caption("Use this tool to decide whether to challenge or raise the last bid in play.")
 
-with st.expander("Game Instructions (click to expand)", expanded=False):
-    st.markdown("""
-    - A bid is a claim that *at least one* valid 5-card poker hand of that strength (and no higher strength) exists in the pool.
-    - On your turn: Raise with a stronger hand or call BS.
-    - The simulation tells you if stronger hands are likely enough to justify raising.
-    """)
-
 from bid import Bid
 from hand_evaluator import describe_hand
 
